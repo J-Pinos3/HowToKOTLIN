@@ -4,6 +4,8 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 fun main(){
+    val nombre:String =" Julie "
+    showMyName("$nombre")
     mensaje()
 
     val numero: Double = 9.0
@@ -18,6 +20,9 @@ fun main(){
 
 }
 
+fun showMyName(nombre:String ){
+    println("Yo soy $nombre")
+}
 
 fun mensaje(){
     println("Tema: Funciones en kotlin" )
