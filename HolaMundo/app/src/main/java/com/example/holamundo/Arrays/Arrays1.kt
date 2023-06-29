@@ -1,5 +1,7 @@
 package com.example.holamundo.Arrays
 
+import com.example.holamundo.estrucdecision.precioTicket
+
 fun main(){
 
     val weekDays = arrayOf("Lunes","Martes","Miércoles","Jueves","Viernes")
@@ -27,6 +29,9 @@ fun main(){
     for(dia in weekDays){
         println("Hoy es: " + dia)
     }
+    println("\n\n")
+
+    weekDays.forEach { it -> println(it)}
 
 
 }
