@@ -2,4 +2,30 @@
     <string name="app_name">HolaMundo</string>
     <string name="male">Hombre</string>
     <string name="female">Mujer</string>
+    <string name="heigh">Altura</string>
+    <string name="weight">Peso</string>
+    <string name="age">Edad</string>
+    <string name="calculate">Calcular</string>
+    <string name="txtResult">Resultado</string>
+    <string name="recalculate">Re-calcular</string>
+
+    <string name="error">Error !!!</string>
+
+
+    <string name="title_bajo_peso">Bajo peso</string>
+    <string name="descripcion_bajo_peso">Estás por debajo del peso normal.</string>
+
+
+    <string name="title_normal">Normal</string>
+    <string name="descripcion_normal">Tu peso es normal.</string>
+
+
+    <string name="title_obeso">Sobre peso</string>
+    <string name="descripcion_obeso">Estás por encima del peso normal.</string>
+
+
+    <string name="title_obesidad_morbida">Obesidad Mórbida</string>
+    <string name="descripcion_obesidad_morbida">Estás con Obesidad Mórbida.</string>
+
+
 </resources>
