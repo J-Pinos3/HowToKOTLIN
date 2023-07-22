@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.holamundo.firstapp.PrimeraAppActivity
 import com.example.holamundo.imccalculator.ImcCalculatorActivity
+import com.example.holamundo.todoapp.TodoMainActivity
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +19,14 @@ class MenuActivity : AppCompatActivity() {
         val btnAppIMC = findViewById<Button>(R.id.btnAppIMC)
         btnAppIMC.setOnClickListener { navega_AppIMC() }
 
+        val btnAppToDo = findViewById<Button>(R.id.btnAppTODO)
+        btnAppToDo.setOnClickListener { navega_AppTodo() }
+
+    }
+
+    private fun navega_AppTodo() {
+        val intent = Intent(this, TodoMainActivity::class.java)
+        startActivity(intent)
     }
 
 

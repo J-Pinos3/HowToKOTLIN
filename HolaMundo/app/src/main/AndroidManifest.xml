@@ -13,6 +13,10 @@
         android:theme="@style/Theme.HolaMundo"
         tools:targetApi="31">
         <activity
+            android:name=".todoapp.TodoMainActivity"
+            android:theme="@style/Theme.TodoApp"
+            android:exported="false" />
+        <activity
             android:name=".imccalculator.resultImcActivity"
             android:exported="false" />
         <activity

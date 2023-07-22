@@ -20,7 +20,13 @@
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="APP SALUDO"  />
+        android:text="APP IMC"  />
 
 
+    <Button
+        android:id="@+id/btnAppTODO"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="APP TODO"  />
 </LinearLayout>
