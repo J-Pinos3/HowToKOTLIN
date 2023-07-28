@@ -28,4 +28,18 @@
     <string name="descripcion_obesidad_morbida">Estás con Obesidad Mórbida.</string>
 
 
+
+<!--    TODO APP-->
+    <string name="title_TODO">Bienvenido, José  </string>
+    <string name="categories_TODO">Categorías </string>
+
+    <string name="tasks_TODO">Tareas </string>
+
+    <string name="txt_hint">Añade tu tarea  </string>
+
+    <string name="dialog_category_business"> Negocios</string>
+    <string name="dialog_category_personal"> Personal</string>
+    <string name="dialog_category_other"> Otro</string>
+    <string name="dialog_add_task_button"> Agregar Tarea </string>
+
 </resources>
