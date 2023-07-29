@@ -7,7 +7,7 @@ import com.example.holamundo.R
 
 
                                                 // función lambda
-class TasksAdapter (private val tasks: List<Task>, private val onTaskSelected: (Int) -> Unit ) : RecyclerView.Adapter<TasksViewHolder>() {
+class TasksAdapter (var tasks: List<Task>, private val onTaskSelected: (Int) -> Unit ) : RecyclerView.Adapter<TasksViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {

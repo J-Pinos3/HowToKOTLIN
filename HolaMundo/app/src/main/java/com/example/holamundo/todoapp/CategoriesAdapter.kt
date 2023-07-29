@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.holamundo.R
 
-class CategoriesAdapter (private val categories: List<TasksCategory>): RecyclerView.Adapter<CategoriesViewHolder>(){
+class CategoriesAdapter (private val categories: List<TasksCategory>, private val onItemSelected: (Int) -> Unit): RecyclerView.Adapter<CategoriesViewHolder>(){
 
     //el adapater permite mostrar las listas y pintarlas
 
@@ -18,7 +18,7 @@ class CategoriesAdapter (private val categories: List<TasksCategory>): RecyclerV
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
 
-        holder.render( categories[position] )
+        holder.render( categories[position], onItemSelected )
     }
 
 

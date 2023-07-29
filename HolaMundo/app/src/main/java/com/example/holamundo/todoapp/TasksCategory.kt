@@ -1,6 +1,6 @@
 package com.example.holamundo.todoapp
 
-sealed class TasksCategory {
+sealed class TasksCategory(var isSeleted: Boolean = true) {
 
     object Personal: TasksCategory()
     object Business: TasksCategory()
