@@ -21,6 +21,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Operadorescalculo"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".OperadoresComparacion"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".IfElse"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".WhenExpression"
+            android:exported="true">
+        </activity>
+
+
     </application>
 
 </manifest>
