@@ -1,7 +1,5 @@
 package com.example.introduccion_102
 
-import java.util.zip.InflaterOutputStream
-
 var saldo: Float = 156.2f
 
 fun main(){
@@ -12,7 +10,7 @@ fun main(){
 
     retirar_dinero(-15f)
 
-    retirar_dinero(saldo-10.0f)
+    retirar_dinero(saldo1-10.0f)
 
 
     println("\n\n-----------\n")
@@ -23,21 +21,21 @@ fun main(){
 
 
 fun mostrar_saludo(){
-    println("Su saldo es:  $saldo $\n")
+    println("Su saldo es:  $saldo1 $\n")
 }
 
 fun depositar_dinero(cantidad: Float = 0.0F){
 
-    if (cantidad < 0) saldo += 0 else saldo += cantidad
+    if (cantidad < 0) saldo1 += 0 else saldo1 += cantidad
     mostrar_saludo()
 }
 
 fun retirar_dinero(cantidad: Float = 0.0F){
 
-    if (cantidad < 0 || cantidad > saldo){
+    if (cantidad < 0 || cantidad > saldo1){
         println("No se puede retirar esa cantidad de dinero\n")
     }else{
-        saldo -= cantidad
+        saldo1 -= cantidad
     }
     mostrar_saludo()
 }
