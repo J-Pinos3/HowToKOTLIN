@@ -29,4 +29,13 @@ abstract class Deportista(private var name: String = "",
                     "Físicamente mi estatura es ${getHeight()} y peso ${getWeight()} Kg."
         }
 
+
+        open public fun aCompetir(estilo: String){
+            println("Voy a")
+        }
+
+        open fun descanzar(){
+            println("DÉJANME DORMIR!!")
+        }
+
 }
