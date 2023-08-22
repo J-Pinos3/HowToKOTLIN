@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.poo.R.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,9 +31,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //FUNCIONES DE EXTENSIÓN
+    //funciones de extensión, permiten añadir métodos a objetos que ya existe, sin tener que heredar
+    //extensión de los objetos String
+    private fun String.noSpaces():String{
+
+        return this.replace(" ","")
+    }
+
+
+    private fun IntArray.showArray(){
+        print("[")
+        for (k in this){
+            print("$k")
+        }
+        println("]")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layout.activity_main)
         maincontext = this
 
 
@@ -104,10 +122,24 @@ class MainActivity : AppCompatActivity() {
         println(hoy.name)//devuelve el valor que almacena "jeuves"
         println(hoy.ordinal)//devuelve la posición en que se encuentra jueves dentro del enum class
         println(hoy.descripcioDia())
-        println(hoy.laboral.toString() + " " + hoy.jornada)
+        println(hoy.laboral.toString() + " " + hoy.jornada + "\n\n\n")
+
+        var usuario: String = "hola, soy yo Jose esto es kotlin"
+        println(usuario.noSpaces())
 
 
-        var btnFight = findViewById<Button>(R.id.btnFight)
+        var array1: Array<Int> = arrayOf(2,4,6,8,10)
+
+        var array2 = IntArray(3)
+        array2[0] = 10;  array2[1] = 20; array2[2] = 30
+        array2.showArray()
+
+        var array3: IntArray = intArrayOf(3,5,7,9,11)
+        array3.showArray()
+
+
+
+        var btnFight = findViewById<Button>(id.btnFight)
         btnFight.setOnClickListener{
             fight(waterPok, firePok)
         }
@@ -118,8 +150,8 @@ class MainActivity : AppCompatActivity() {
 
 
     fun createNewPokemon(view: View){
-        var etName = findViewById<EditText>(R.id.etName)
-        var etAttackPower = findViewById<EditText>(R.id.etAttackPower)
+        var etName = findViewById<EditText>(id.etName)
+        var etAttackPower = findViewById<EditText>(id.etAttackPower)
 
         pok = Pokemon()
 
@@ -127,11 +159,11 @@ class MainActivity : AppCompatActivity() {
             pok.Pokemon(etName.text.toString(), etAttackPower.text.toString().toFloat())
         }
 
-        var ivPokemon = findViewById<ImageView>(R.id.ivPokemon)
-        ivPokemon.setImageResource(R.mipmap.pokemon)//nombre de la imagen
+        var ivPokemon = findViewById<ImageView>(id.ivPokemon)
+        ivPokemon.setImageResource(mipmap.pokemon)//nombre de la imagen
 
 
-        var tvPokemon = findViewById<TextView>(R.id.tvPokemon)
+        var tvPokemon = findViewById<TextView>(id.tvPokemon)
         loadDataPokemon(tvPokemon, pok)
 
 
@@ -140,9 +172,9 @@ class MainActivity : AppCompatActivity() {
 
 
     fun createNewWaterPokemon(v: View){
-        var etWaterName = findViewById<EditText>(R.id.etWaterName)
-        var etWaterAttackPower = findViewById<EditText>(R.id.etWaterAttackPower)
-        var etWaterMaxResistance = findViewById<EditText>(R.id.etWaterMaxResistance)
+        var etWaterName = findViewById<EditText>(id.etWaterName)
+        var etWaterAttackPower = findViewById<EditText>(id.etWaterAttackPower)
+        var etWaterMaxResistance = findViewById<EditText>(id.etWaterMaxResistance)
 
         waterPok = Waterpokemon()
 
@@ -154,32 +186,32 @@ class MainActivity : AppCompatActivity() {
                                  )
         }
 
-        var ivWaterPokemon = findViewById<ImageView>(R.id.ivWaterPokemon)
-        ivWaterPokemon.setImageResource(R.mipmap.water)
-        ivWaterPokemon.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+        var ivWaterPokemon = findViewById<ImageView>(id.ivWaterPokemon)
+        ivWaterPokemon.setImageResource(mipmap.waterpikachu)
+        ivWaterPokemon.setBackgroundColor(ContextCompat.getColor(this, color.white))
 
 
-        var tvWaterpokemon = findViewById<TextView>(R.id.tvWaterpokemon)
+        var tvWaterpokemon = findViewById<TextView>(id.tvWaterpokemon)
         loadDataPokemon(tvWaterpokemon, waterPok)
 
     }
 
     fun cureWaterPokemon(v: View){
         waterPok.cure()
-        var tvWaterpokemon = findViewById<TextView>(R.id.tvWaterpokemon)
+        var tvWaterpokemon = findViewById<TextView>(id.tvWaterpokemon)
         loadDataPokemon(tvWaterpokemon, waterPok)
     }
 
 
     fun sayHiWaterPokemon(v: View){ waterPok.sayHi() }
     fun evolveWaterPokemon(v: View){
-        var etEvolveWaterPokemon = findViewById<EditText>(R.id.etEvolveWaterPokemon)
+        var etEvolveWaterPokemon = findViewById<EditText>(id.etEvolveWaterPokemon)
         waterPok.evolve(etEvolveWaterPokemon.text.toString())
 
-        var ivWaterPokemon = findViewById<ImageView>(R.id.ivWaterPokemon)
-        ivWaterPokemon.setImageResource(R.mipmap.water)//debería ser una nueva imágen para el evolucionado
+        var ivWaterPokemon = findViewById<ImageView>(id.ivWaterPokemon)
+        ivWaterPokemon.setImageResource(mipmap.waterpikachu)//debería ser una nueva imágen para el evolucionado
 
-        var tvWaterpokemon = findViewById<TextView>(R.id.tvWaterpokemon)
+        var tvWaterpokemon = findViewById<TextView>(id.tvWaterpokemon)
         loadDataPokemon(tvWaterpokemon, waterPok)
     }
 
@@ -187,9 +219,9 @@ class MainActivity : AppCompatActivity() {
 
 
     fun createNewFirePokemon(v: View){
-        var etFireName = findViewById<EditText>(R.id.etFireName)
-        var etFireAttackPower = findViewById<EditText>(R.id.etFireAttackPower)
-        var etFireBallTemperature = findViewById<EditText>(R.id.etFireBallTemperature)
+        var etFireName = findViewById<EditText>(id.etFireName)
+        var etFireAttackPower = findViewById<EditText>(id.etFireAttackPower)
+        var etFireBallTemperature = findViewById<EditText>(id.etFireBallTemperature)
 
 
         firePok = FirePokemon()
@@ -201,19 +233,19 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        var ivFirePokemon = findViewById<ImageView>(R.id.ivFirePokemon)
-        ivFirePokemon.setImageResource(R.mipmap.fire)
-        ivFirePokemon.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+        var ivFirePokemon = findViewById<ImageView>(id.ivFirePokemon)
+        ivFirePokemon.setImageResource(mipmap.leavepikachu)
+        ivFirePokemon.setBackgroundColor(ContextCompat.getColor(this, color.white))
 
 
-        var tvFirepokemon = findViewById<TextView>(R.id.tvFirepokemon)
+        var tvFirepokemon = findViewById<TextView>(id.tvFirepokemon)
         loadDataPokemon(tvFirepokemon, firePok)
 
     }
 
     fun cureFirePokemon(v: View){
         firePok.cure()
-        var tvFirepokemon = findViewById<TextView>(R.id.tvFirepokemon)
+        var tvFirepokemon = findViewById<TextView>(id.tvFirepokemon)
         loadDataPokemon(tvFirepokemon, firePok)
     }
 
@@ -221,13 +253,13 @@ class MainActivity : AppCompatActivity() {
     fun sayHiFirePokemon(v: View){ firePok.sayHi() }
 
     fun evolveFirePokemon(v: View){
-        var etEvolveFirePokemon = findViewById<EditText>(R.id.etEvolveFirePokemon)
+        var etEvolveFirePokemon = findViewById<EditText>(id.etEvolveFirePokemon)
         firePok.evolve(etEvolveFirePokemon.text.toString())
 
-        var ivFirePokemon = findViewById<ImageView>(R.id.ivFirePokemon)
-        ivFirePokemon.setImageResource(R.mipmap.fire)//debería ser una nueva imágen para el evolucionado
+        var ivFirePokemon = findViewById<ImageView>(id.ivFirePokemon)
+        ivFirePokemon.setImageResource(mipmap.leavepikachu)//debería ser una nueva imágen para el evolucionado
 
-        var tvFirepokemon = findViewById<TextView>(R.id.tvFirepokemon)
+        var tvFirepokemon = findViewById<TextView>(id.tvFirepokemon)
         loadDataPokemon(tvFirepokemon, firePok)
     }
 
@@ -236,9 +268,9 @@ class MainActivity : AppCompatActivity() {
     //**************************************************************************
 
     fun createNewEarthPokemon(v: View){
-        var etEarthName = findViewById<EditText>(R.id.etEarthName)
-        var etEarthAttackPower = findViewById<EditText>(R.id.etEarthAttackPower)
-        var etEarthMaxDepth = findViewById<EditText>(R.id.etEarthMaxDepth)
+        var etEarthName = findViewById<EditText>(id.etEarthName)
+        var etEarthAttackPower = findViewById<EditText>(id.etEarthAttackPower)
+        var etEarthMaxDepth = findViewById<EditText>(id.etEarthMaxDepth)
 
 
         earthPok = EarthPokemon()
@@ -250,19 +282,19 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        var ivEarthPokemon = findViewById<ImageView>(R.id.ivEarthPokemon)
-        ivEarthPokemon.setImageResource(R.mipmap.earth)
-        ivEarthPokemon.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+        var ivEarthPokemon = findViewById<ImageView>(id.ivEarthPokemon)
+        ivEarthPokemon.setImageResource(mipmap.earthpikachu)
+        ivEarthPokemon.setBackgroundColor(ContextCompat.getColor(this, color.white))
 
 
-        var tvEarthPokemon = findViewById<TextView>(R.id.tvEarthPokemon)
+        var tvEarthPokemon = findViewById<TextView>(id.tvEartgpokemon)
         loadDataPokemon(tvEarthPokemon, earthPok)
 
     }
 
     fun cureEarthPokemon(v: View){
         earthPok.cure()
-        var tvEartgpokemon = findViewById<TextView>(R.id.tvEartgpokemon)
+        var tvEartgpokemon = findViewById<TextView>(id.tvEartgpokemon)
         loadDataPokemon(tvEartgpokemon, earthPok)
     }
 
@@ -270,13 +302,13 @@ class MainActivity : AppCompatActivity() {
     fun sayHiEarthPokemon(v: View){ earthPok.sayHi() }
 
     fun evolveEarthPokemon(v: View) {
-        var etEvolveEarthPokemon = findViewById<EditText>(R.id.etEvolveEarthPokemon)
+        var etEvolveEarthPokemon = findViewById<EditText>(id.etEvolveEarthPokemon)
         earthPok.evolve(etEvolveEarthPokemon.text.toString())
 
-        var ivEarthPokemon = findViewById<ImageView>(R.id.ivEarthPokemon)
-        ivEarthPokemon.setImageResource(R.mipmap.earth)//debería ser una nueva imágen para el evolucionado
+        var ivEarthPokemon = findViewById<ImageView>(id.ivEarthPokemon)
+        ivEarthPokemon.setImageResource(mipmap.earthpikachu)//debería ser una nueva imágen para el evolucionado
 
-        var tvEarthPokemon = findViewById<TextView>(R.id.tvEarthPokemon)
+        var tvEarthPokemon = findViewById<TextView>(id.tvEartgpokemon)
         loadDataPokemon(tvEarthPokemon, earthPok)
     }
 
@@ -286,7 +318,7 @@ class MainActivity : AppCompatActivity() {
     //***************************************************************************
 
     private fun fight(p1: Pokemon, p2: Pokemon){
-        var emtlog = findViewById<EditText>(R.id.emtlog)
+        var emtlog = findViewById<EditText>(id.emtLog)
         emtlog.setText("")
 
         var text: String = ""
@@ -315,10 +347,10 @@ class MainActivity : AppCompatActivity() {
 
         emtlog.setText(text)
 
-        var tvFirepokemon = findViewById<TextView>(R.id.tvFirepokemon)
+        var tvFirepokemon = findViewById<TextView>(id.tvFirepokemon)
         loadDataPokemon(tvFirepokemon, firePok)
 
-        var tvWaterpokemon = findViewById<TextView>(R.id.tvFirepokemon)
+        var tvWaterpokemon = findViewById<TextView>(id.tvFirepokemon)
         loadDataPokemon(tvWaterpokemon, waterPok)
 
 
