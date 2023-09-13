@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
 
     <TextView
         android:id="@+id/tvSaludo"
@@ -16,11 +16,10 @@
         android:textSize="20sp"
         android:textStyle="bold|italic"
         android:typeface="serif"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
 
     <TextView
         android:id="@+id/tvMensaje"
@@ -28,44 +27,204 @@
         android:layout_height="wrap_content"
         android:text="Sigue así crack"
         android:textAllCaps="true"
+        android:textColor="@color/green"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        android:textColor="@color/green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSaludo"
-        app:layout_constraintVertical_bias="0.05"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
 
     <EditText
         android:id="@+id/etTextNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="2343456"
-        android:hint="Nombre"
+        android:background="@drawable/style_etbg"
+        android:digits="0123456789 "
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="10dp"
-        android:paddingVertical="5dp"
+        android:ems="10"
+        android:gravity=""
+        android:hint="Name"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:paddingStart="10dp"
-        android:background="@drawable/style_etbg"
-        android:gravity="left"
-        android:inputType="textCapSentences"
-        android:textColorHint="@color/orange"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="891354651"
         android:textColor="@color/green"
-        android:textColorHighlight="@color/purple"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="305dp"
+        android:textColorHint="@color/orange"
+        android:textColorHighlight="@color/orange"
         app:layout_constraintTop_toBottomOf="@id/tvMensaje"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.21"/>
-        <!--
-        El hint se borra cuando el usuario da click para escribir
-        ems, es la anchura que es visible
-        digits, me permite especificar que caracteres son válidos
-        -->
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="373dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="6dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTextNombre" />
+
+    <EditText
+        android:id="@+id/editTextNumberPassword"
+        android:layout_width="375dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Number Password"
+        android:inputType="numberPassword"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPassword" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="375dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextNumberPassword" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="375dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextTextPostalAddress"
+        android:layout_width="373dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Postal Address"
+        android:inputType="textPostalAddress"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="MultiLine"
+        android:inputType="textMultiLine"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="time"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="373dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="date"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Number"
+        android:inputType="number"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextNumberSigned"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Number Signed"
+        android:inputType="numberSigned"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal"
+        android:layout_width="373dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Number Decimal"
+        android:inputType="numberDecimal"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberSigned" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:textSize="10dp"
+        android:hint="AutoCompleteTextView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="8dp"/>
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:hint="MultiAutoCompleteTextView"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+ />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
