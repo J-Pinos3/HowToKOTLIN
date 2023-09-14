@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".buttons">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"/>
+
+
+        <android.widget.Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:paddingLeft="11dp"
+            android:paddingRight="18dp"
+            android:background="@color/green"
+            android:gravity="left|center_vertical"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="6dp"
+            android:layout_marginBottom="9dp"/>
+
+
+        <!-- El backgroundTint tiene más prioridad que el background
+        por eso apararece café
+
+        android:backgroundTint="@color/earth"
+        si está puesto ese backgroundTint, no se verá lo del drawable
+        -->
+        <android.widget.Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Botón"
+            android:paddingLeft="11dp"
+            android:paddingRight="18dp"
+            android:background="@drawable/corners"
+            android:gravity="center"
+            android:backgroundTint="@color/earth"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="6dp"
+            android:layout_marginBottom="6dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>
