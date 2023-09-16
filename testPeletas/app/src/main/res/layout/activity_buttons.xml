@@ -12,8 +12,9 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btnIniciarSesion"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="Iniciar Sesión"
             app:cornerRadius="8dp"
             android:backgroundTint="@color/orange"
@@ -23,11 +24,12 @@
 
         <android.widget.Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="Button"
             android:paddingLeft="11dp"
             android:paddingRight="18dp"
-            android:background="@color/green"
+            android:background="@color/gray"
+            android:backgroundTint="@color/green"
             android:gravity="left|center_vertical"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="6dp"
@@ -42,7 +44,7 @@
         -->
         <android.widget.Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="Botón"
             android:paddingLeft="11dp"
             android:paddingRight="18dp"
@@ -55,9 +57,58 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:backgroundTint="@color/purple"
+            tools:srcCompat="@drawable/ic_email" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgCondiciones"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- CHIP 1 -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip1"
+                style="@style/chEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="parking"
+                app:chipIcon="@drawable/ic_car" />
+
+            <!-- CHIP 2 -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip2"
+                style="@style/chEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="comedor" />
+
+            <!-- CHIP 3 -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip3"
+                style="@style/chEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="piscina" />
+
+            <!-- CHIP 4 -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip4"
+                style="@style/chEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 baños" />
+
+            <!-- CHIP 5 -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip5"
+                style="@style/chEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="salón recreacional" />
+
+        </com.google.android.material.chip.ChipGroup>
 
 
     </LinearLayout>

@@ -12,4 +12,7 @@
     <color name="fire">#FF0000</color>
     <color name="water">#000080	</color>
     <color name="green">#008000</color>
+
+    <color name="blue_light" > #cce3fb  </color>
+    <color name="blue_dark" > #0360bd  </color>
 </resources>
