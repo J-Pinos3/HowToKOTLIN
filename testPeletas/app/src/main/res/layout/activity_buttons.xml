@@ -19,12 +19,12 @@
             app:cornerRadius="8dp"
             android:backgroundTint="@color/orange"
             android:textColor="@color/black"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="3dp"/>
 
 
         <android.widget.Button
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="38dp"
             android:text="Button"
             android:paddingLeft="11dp"
             android:paddingRight="18dp"
@@ -33,7 +33,7 @@
             android:gravity="left|center_vertical"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="6dp"
-            android:layout_marginBottom="9dp"/>
+            android:layout_marginBottom="5dp"/>
 
 
         <!-- El backgroundTint tiene más prioridad que el background
@@ -53,7 +53,7 @@
             android:backgroundTint="@color/earth"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="6dp"
-            android:layout_marginBottom="6dp"/>
+            android:layout_marginBottom="3dp"/>
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -65,7 +65,7 @@
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/cgCondiciones"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="100dp">
 
             <!-- CHIP 1 -->
             <com.google.android.material.chip.Chip
@@ -109,6 +109,143 @@
                 android:text="salón recreacional" />
 
         </com.google.android.material.chip.ChipGroup>
+
+
+
+        <RadioGroup
+            android:id="@+id/rgVacaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--ÑLos radiobutton solo son excluyentes si tienen ID-->
+            <RadioButton
+                android:id="@+id/rbPlaya"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Playa"
+                android:buttonTint="@color/orange"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/rbMontana"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Montaña"
+                android:checked="true"
+                android:onClick="onRadioButtonClicked"/>
+
+            <!--El atributo onClick envía un View, la función debe recibirlo-->
+            <RadioButton
+                android:id="@+id/rbSelva"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Selva"
+                android:onClick="onRadioButtonClicked"/>
+
+        </RadioGroup>
+
+
+        <!--RADIO GROUP OPTIONS-->
+        <RadioGroup
+            android:id="@+id/rgOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="1dp"
+            android:checkedButton="@id/rbCar">
+
+            <!--ÑLos radiobutton solo son excluyentes si tienen ID-->
+            <RadioButton
+                android:id="@+id/rbCar"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:background="@drawable/rb_car_bg"
+                android:button="@null"/>
+
+            <RadioButton
+                android:id="@+id/rbAirplane"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:background="@drawable/rb_airplane_bg"
+                android:button="@null"/>
+
+            <!--El atributo onClick envía un View, la función debe recibirlo-->
+            <RadioButton
+                android:id="@+id/rbTrain"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:button="@null"
+                android:background="@drawable/rb_train_bg"/>
+
+        </RadioGroup>
+
+
+        <!--CHECK BOX-->
+        <CheckBox
+            android:id="@+id/cbSeguro"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Seguro de viaje"
+            android:buttonTint="@color/earth"
+            android:checked="true"
+            android:button="@drawable/cb_custom"
+            android:enabled="false"
+            android:onClick="onCheckBoxClicked" />
+        <CheckBox
+            android:id="@+id/cbCancelable"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Cancelar reserva"
+            android:buttonTint="@color/orange"
+            android:checked="true"
+            android:button="@drawable/cb_custom"
+            android:onClick="onCheckBoxClicked"/>
+
+
+
+
+        <ToggleButton
+            android:id="@+id/tgNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            android:textOn="Aceptar"
+            android:textOff="Cancelar"
+            android:checked="true"
+            android:backgroundTint="@color/earth"/>
+
+
+        <ToggleButton
+            android:id="@+id/tgCustom"
+            android:layout_width="72dp"
+            android:layout_height="36dp"
+            android:text="ToggleButton"
+            android:textOn=""
+            android:textOff=""
+            android:checked="false"
+            android:background="@drawable/tg_travel_bg"/>
+
+        <Switch
+            android:id="@+id/switchNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notificar cambios por email. "
+            android:thumb="@drawable/ic_email"
+            android:thumbTint="@color/blue_dark"
+            android:trackTint="@color/green"/>
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchCustom"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:textOff="Off"
+            android:textOn="On"
+            android:text="Notificación de cambios  "
+            app:showText="true"
+            android:checked="true"
+            android:thumb="@drawable/sw_thumb_custom"/>
 
 
     </LinearLayout>
