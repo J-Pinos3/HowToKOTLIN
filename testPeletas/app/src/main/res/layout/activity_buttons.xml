@@ -11,6 +11,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_airplane"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/green" />
+
         <Button
             android:id="@+id/btnIniciarSesion"
             android:layout_width="wrap_content"
@@ -245,7 +256,10 @@
             android:text="Notificación de cambios  "
             app:showText="true"
             android:checked="true"
-            android:thumb="@drawable/sw_thumb_custom"/>
+            android:thumb="@drawable/sw_thumb_custom"
+            app:track="@drawable/sw_track_custom"/>
+
+
 
 
     </LinearLayout>

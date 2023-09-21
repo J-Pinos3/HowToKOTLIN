@@ -17,6 +17,7 @@ import androidx.core.view.get
 import com.example.testpeletas.R
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class buttons : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,6 +108,11 @@ class buttons : AppCompatActivity() {
             }else{
                 Toast.makeText(this, "Switch  Desactivado", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        var floatingActionButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        floatingActionButton.setOnClickListener {
+            Toast.makeText(this, "Floating Button Activado", Toast.LENGTH_SHORT).show()
         }
 
     }//FIN DE ONCREATE
