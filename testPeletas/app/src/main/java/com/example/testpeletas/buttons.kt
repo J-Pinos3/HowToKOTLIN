@@ -137,12 +137,14 @@ class buttons : AppCompatActivity() {
                         Toast.makeText(this, "Usted viajará a la ${view.text}", Toast.LENGTH_SHORT).show()
                     }
                 }
-
+                /*
                 R.id.rbSelva -> {
                     if(ischecked){
                         Toast.makeText(this, "Usted viajará a la ${view.text}", Toast.LENGTH_SHORT).show()
                     }
                 }
+                */
+
 
 
             }//when

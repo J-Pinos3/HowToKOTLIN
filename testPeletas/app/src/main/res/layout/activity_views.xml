@@ -11,6 +11,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+
+
+        <VideoView
+            android:id="@+id/videoViewLocal"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:backgroundTint="@color/green"/>
+
+
+        <VideoView
+            android:id="@+id/videoViewInternet"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:backgroundTint="@color/white"/>
+
+
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"

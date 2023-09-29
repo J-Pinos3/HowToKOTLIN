@@ -6,6 +6,8 @@ import android.webkit.WebView
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import android.widget.ImageView
+import android.widget.MediaController
+import android.widget.VideoView
 import com.squareup.picasso.Picasso
 
 class views : AppCompatActivity() {
@@ -26,6 +28,21 @@ class views : AppCompatActivity() {
         webView.setWebViewClient(WebViewClient())
 
         webView.loadUrl("https://www.google.com")
+
+
+
+
+        try {
+            var videoViewInternet = findViewById<VideoView>(R.id.videoViewInternet)
+            var mcWeb = MediaController(this)
+
+            mcWeb.setAnchorView(videoViewInternet)
+            videoViewInternet.setVideoPath("http://jotajotavm.com/img/video.mp4")
+            videoViewInternet.setMediaController(mcWeb)
+        } catch (e: Exception) {
+            println(e.message)
+        }
+
 
     }
 }

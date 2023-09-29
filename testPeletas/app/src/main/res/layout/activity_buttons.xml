@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".buttons">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/purple"
-            tools:srcCompat="@drawable/ic_email" />
+            app:srcCompat="@drawable/ic_email" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/cgCondiciones"
@@ -133,26 +131,21 @@
             <RadioButton
                 android:id="@+id/rbPlaya"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="wrap_content"
                 android:text="Playa"
-                android:buttonTint="@color/orange"
-                android:onClick="onRadioButtonClicked"/>
-
-            <RadioButton
-                android:id="@+id/rbMontana"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="Montaña"
                 android:checked="true"
-                android:onClick="onRadioButtonClicked"/>
+                android:buttonTint="@color/orange"
+                android:onClick="onRadioButtonClicked" />
 
             <!--El atributo onClick envía un View, la función debe recibirlo-->
             <RadioButton
-                android:id="@+id/rbSelva"
+                android:id="@+id/rbMontana"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="Selva"
-                android:onClick="onRadioButtonClicked"/>
+                android:layout_height="wrap_content"
+                android:text="Montaña"
+                android:onClick="onRadioButtonClicked" />
+
+
 
         </RadioGroup>
 
@@ -224,6 +217,7 @@
             android:textOn="Aceptar"
             android:textOff="Cancelar"
             android:checked="true"
+            android:buttonTint="@color/colorOn"
             android:backgroundTint="@color/earth"/>
 
 
