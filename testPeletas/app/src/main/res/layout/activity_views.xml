@@ -48,13 +48,13 @@
             android:src="@drawable/shapeable_image"
             app:shapeAppearanceOverlay="@style/Circulars"/>
 
-        <!--
-        ESTE IMV ES DE LA IMÁGEN CARGADA DESDE INTERNET
+
+        <!--ESTE IMV ES DE LA IMÁGEN CARGADA DESDE INTERNET-->
         <ImageView
             android:id="@+id/ImgUrl"
             android:layout_width="250dp"
             android:layout_height="250dp"/>
-        -->
+
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/sivCircularWithStroke"

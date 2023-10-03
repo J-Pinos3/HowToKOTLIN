@@ -14,6 +14,7 @@ import android.widget.SearchView
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
+import com.example.testpeletas.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
@@ -23,8 +24,14 @@ class widgets2 : AppCompatActivity() {
 
     private lateinit var activityContext: Context
 
+    //private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //          Activity<Nombre de la actividad con la que quiero trabajar>Binding
+        //binding = Activity<nombre>Binding.inflate(layoutInflater)
+        //setContentView(binding.root)
         setContentView(R.layout.activity_widgets2)
 
         activityContext = this
@@ -36,6 +43,11 @@ class widgets2 : AppCompatActivity() {
             //se pone month +1 xq es como un arreglo, los índices, elementos van desde el  0
             var date = "$year/${month+1}/$day"
             tvFecha.text = "Fecha seleccionada: "+date
+
+            //con el binding referencio así al objeto del xml
+            //binding.<objeto>.text...etc
+            //y ya no necesitaría crearlo con findviewbyid... etc
+            //una activity no debe referenciar con binding a otra activity
         }
 
         //una vez seleccionada una fecha inicial, dependiendo la situación,
@@ -95,11 +107,11 @@ class widgets2 : AppCompatActivity() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
+
             }
         })
 

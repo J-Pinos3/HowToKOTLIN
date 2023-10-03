@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UnidadesMedida"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Texto con size: 16sp / width: 300dp"
+        android:background="@color/orange"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Texto con size: 16dp / width: 300dp"
+        android:background="@color/green"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="250px"
+        android:layout_height="wrap_content"
+        android:text="Texto con width: 250px"
+        android:background="@color/green"
+        android:textSize="16dp"/>
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="40mm"
+        android:layout_height="wrap_content"
+        android:text="Texto con width: 40mm"
+        android:background="@color/green"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="2in"
+        android:layout_height="wrap_content"
+        android:text="Texto con width: 2in"
+        android:background="@color/green"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="72pt"
+        android:layout_height="wrap_content"
+        android:text="Texto con width: 72pt"
+        android:background="@color/green"
+        android:textSize="16dp"/>
+
+
+
+
+    <!--
+
+        un pixel es la menor unidad homogénea en color que forma parte de una imágen digital
+        (cada puntito de la pantalla)
+
+
+
+        La Densidad de Píxeles
+        Es la cantidad de pixeles que cabe en una pulgada
+        Las pantallas de alta densidad tienen más pixeles por pulgada que las de baja densidad
+
+        +pixeles = +densidad
+        +densidad = los elementos se ven mejor
+        -densidad = los elementos se ven más grandes si se usan pixeles
+
+        EL TAMAÑO DE LA PANTALLA NO MARCA LA RESOLUCIÓN DE LA PANTALLA
+        !!LA RESOLUCIÓN DE LA PANBTALLA ESTÁ DADA POR EL NÚMERO DE PIXELES DE LA PANTALLA
+
+
+
+
+        Los Pixeles de Densidad Independiente (dp o dip)
+        Son unidades flexibles y se escalan de manera uniforme a la pantalla
+        1dp = pixel cuando la densidad de la pantalla es 160
+        dp = (anchoEnPixeles * 160 ) / DensidadDePantalla
+
+
+
+
+        Los Pixeles de Escala Dependiente (sp)
+        Tienen la misma función que los dp, pero se usan para las fuentes
+        el valor por defecto de un sp es el mismo por defecto que de un dp
+        La diferencia entre sp y dp es que el sp preserva los ajustes del usuario respecto a la fuente
+        los usuarios que tengan ajustes para agrandar el textp verán que el tamaño del texto concuerda con sus preferencias
+
+
+
+        mm (milímetros)
+        Son milímetros reales según el tamaño físico de la pantalla
+
+        in (pulgadas)
+        Son pulgadas reales según el tamaño físico de la pantalla
+
+        pt (points)
+        Es 1/72 de una pulgada, según el tamaño físico de la pantalla
+
+    -->
+
+
+
+
+</LinearLayout>

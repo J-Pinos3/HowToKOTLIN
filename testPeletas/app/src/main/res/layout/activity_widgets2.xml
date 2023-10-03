@@ -75,12 +75,13 @@
             android:id="@+id/sbNormal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
             android:thumbTint="@color/purple"
+            android:thumb="@drawable/ic_car"
+            android:progressBackgroundTint="@color/blue_dark"
+            android:progressTint="@color/orange"
             android:max="100"
             android:progress="30"
-            android:progressTint="@color/orange"
-            android:progressBackgroundTint="@color/blue_dark"/>
+            android:layout_marginVertical="8dp"/>
 
         <SeekBar
             android:id="@+id/sbCustom"
