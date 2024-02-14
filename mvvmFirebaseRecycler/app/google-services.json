@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "709219976267",
+    "firebase_url": "https://b-ccd4a-default-rtdb.firebaseio.com",
+    "project_id": "b-ccd4a",
+    "storage_bucket": "b-ccd4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709219976267:android:8a62c294c03e996e9eb9ce",
+        "android_client_info": {
+          "package_name": "com.reverb.mvvmfirebaserecycler"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwWg3r8r-WsFLMh-GPA5DTvrBmEWtNNiM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
