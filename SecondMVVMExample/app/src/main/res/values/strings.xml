@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SecondMVVMExample</string>
+    <string name="cartelera">Cartelera</string>
+    <string name="populares">Populares</string>
+</resources>
