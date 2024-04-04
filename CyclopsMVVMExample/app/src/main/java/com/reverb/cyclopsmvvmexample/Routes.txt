@@ -1,0 +1,37 @@
+https://www.youtube.com/watch?v=ogtqrz58zRQ   1:48:20
+
+Pokemon API
+    https://raw.githubusercontent.com/Biuni/PokemonGo-Pokedex/master/pokedex.json
+
+when to use response or call
+https://stackoverflow.com/questions/64124670/call-or-response-in-retrofit
+
+
+Singleton
+    1) algo global que la app usa en todas partes
+    2) There's only one instances of a class for the whole project
+
+
+Const
+    constants done in compile time
+
+Val
+    constants done in runtime
+
+
+Inside Retrofit Client class
+    HttpLoggingInterceptor is used to debug the http response
+    it'll brigs the data and will show me, so i can know if i'm getting a reponse
+
+
+BuildConfig
+    https://stackoverflow.com/questions/76900820/i-cant-generate-on-android-studiokotlin-the-file-buildconfig-of-my-project
+    https://stackoverflow.com/questions/60942575/unresolved-reference-buildconfig-in-kotlin
+
+Repository
+    will comunicate between data and view
+    gets access to different sources of clean data
+    https://www.youtube.com/watch?v=oOMYemyeQzM
+
+Suspend functions
+    They can have jobs done outside main thread
