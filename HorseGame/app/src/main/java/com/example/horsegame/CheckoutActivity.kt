@@ -1,5 +1,7 @@
 package com.example.horsegame
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -30,10 +32,16 @@ class CheckoutActivity : AppCompatActivity() {
     private lateinit var paymentSheet: PaymentSheet
     private lateinit var payButton: Button
 
+    private var level: Int? = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
+
+        val bundle = intent.extras
+        level = bundle?.getInt("level")
+        if (level == null) level = 1
 
         payButton = findViewById(R.id.pay_button)
         payButton.setOnClickListener(::onPayClicked)
@@ -116,6 +124,7 @@ class CheckoutActivity : AppCompatActivity() {
         when(paymentResult){
             is PaymentSheetResult.Completed ->{
                 showToast("Payment Complete!")
+                becamePremium()
             }
 
             is PaymentSheetResult.Canceled ->{
@@ -126,6 +135,20 @@ class CheckoutActivity : AppCompatActivity() {
                 showAlert("Payment Failed", paymentResult.error.localizedMessage)
             }
         }
+    }
+
+
+    private fun becamePremium() {
+        var sharedPreferences: SharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE)
+        var editor = sharedPreferences.edit()
+        editor.apply {
+            putBoolean("PREMIUM", true)
+            putInt("LEVEL", level!!)
+        }.apply()
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
     }
 
 }

@@ -23,8 +23,12 @@
             android:name=".CheckoutActivity"
             android:exported="false" />
         <!-- android:theme="@style/Theme.HorseGame" -->
+        <!-- con android:configChanges="screenSize|orientation"
+         la activity no se resetea al rotar la pantalla-->
         <activity
             android:name=".MainActivity"
+            android:configChanges="screenSize|orientation"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

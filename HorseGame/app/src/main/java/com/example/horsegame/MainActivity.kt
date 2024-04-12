@@ -4,8 +4,11 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import android.graphics.Bitmap
 import android.graphics.Point
+import android.media.MediaPlayer
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build.VERSION
@@ -22,10 +25,12 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentOnAttachListener
 import androidx.test.runner.screenshot.ScreenCapture
 import androidx.test.runner.screenshot.Screenshot.capture
 import com.google.android.gms.ads.AdError
@@ -47,8 +52,8 @@ import java.util.Date
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
-
-    private var bitmap: Bitmap? =  null
+    //TODO VIDEO:sonidos en la app 8:00
+    private var bitmap: Bitmap? = null
     private var mHandler: Handler? = null
     private var timeinSeconds: Long = 0
 
@@ -61,12 +66,14 @@ class MainActivity : AppCompatActivity() {
     private var cellSelected_Y = 0
     private lateinit var board: Array<IntArray>
 
+
+    private var LAST_LEVEL = 9
     private var nextLevel: Boolean = false
     private var level = 1
     private var levelMoves = 0
     private var scoreLevel = 1
     private var movesRequired = 0//cada x movimientos, hay bonus
-    private var moves =0
+    private var moves = 0
     private var lives = 1
     private var score_lives = 1
 
@@ -78,21 +85,91 @@ class MainActivity : AppCompatActivity() {
     private var nameColorBlack = "black_cell"
     private var nameColorWhite = "white_cell"
 
-    private  var interstitialAd: InterstitialAd?= null
+    private var interstitialAd: InterstitialAd? = null
     private var unloadedAd = true
+
+    private var optionBlack = R.drawable.option_black
+    private var optionWhite = R.drawable.option_white
+
+    private var premium: Boolean = false
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: Editor //SharedPreferences.Editor
+
+
+    private lateinit var mpMovement: MediaPlayer
+    private lateinit var mpBonus: MediaPlayer
+    private lateinit var mpGameOver: MediaPlayer
+    private lateinit var mpYouWin: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initAds()
 
         initScreenGame()
-        startGame()
 
+        initPreferences()
+
+        initAds()
 
 
     }//on create
+
+
+    override fun onResume() {
+        super.onResume()
+
+        checkPremium()
+        startGame()
+    }
+
+
+    private fun initPreferences(){
+        sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE)
+        editor = sharedPreferences.edit()
+    }
+
+    private fun checkPremium() {
+        premium = sharedPreferences.getBoolean("PREMIUM", false)
+        if(premium){
+            LAST_LEVEL = 13
+
+            level = sharedPreferences.getInt("LEVEL", 1)
+
+            var lyPremium = findViewById<LinearLayout>(R.id.lyPremium)
+            lyPremium.removeAllViews()
+
+            var lyAdsBanner = findViewById<LinearLayout>(R.id.lyAdsBanner)
+            lyAdsBanner.removeAllViews()
+
+            var svGame = findViewById<ScrollView>(R.id.svGame)
+            svGame.setPadding(0,0,0,0)
+
+
+            var tvLiveData = findViewById<TextView>(R.id.tvLiveData)
+            tvLiveData.background = getDrawable(R.drawable.bg_data_bottom_contrast_premium)
+
+            var tvLiveTitle = findViewById<View>(R.id.tvLiveTitle)
+            tvLiveTitle.background = getDrawable(R.drawable.bg_data_top_contrast_premium)
+
+            var vNewBonus = findViewById<View>(R.id.vNewBonus)
+            vNewBonus.setBackgroundColor(ContextCompat.getColor(this,
+                resources.getIdentifier("contrast_data_premium","color", packageName)))
+
+            nameColorBlack = "black_cell_premium"
+            nameColorWhite = "white_cell_premium"
+
+
+            optionBlack = R.drawable.option_black_premium
+            optionWhite = R.drawable.option_white_premium
+
+
+        }else{
+            initAds()
+        }
+    }
+
 
     fun launchPaymentCard(v: View){
         callPayment()
@@ -106,6 +183,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         val intent = Intent(this, CheckoutActivity::class.java)
+        intent.putExtra("level", level)
         startActivity(intent)
     }
 
@@ -214,6 +292,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun launchAction(view:View){
+        if(premium == false && level > LAST_LEVEL){
+            callPayment()
+        }
         hideMessage(true)
     }
 
@@ -322,7 +403,7 @@ class MainActivity : AppCompatActivity() {
             if (dif_X == -2 && dif_Y == 1) checkTrue = true     //left  - top
             if (dif_X == -2 && dif_Y == -1) checkTrue = true    //left  - bottom
         }else{
-            if(board[x][y] != 1){
+            if(board[x][y] == 0 || board[x][y] == 2 || board[x][y] == 9){
                 bonus--
                 val tvBonusData = findViewById<TextView>(R.id.tvBonusData)
                 tvBonusData.text = " + $bonus"
@@ -456,11 +537,14 @@ class MainActivity : AppCompatActivity() {
             level++
             setLives()
         }else{
-            lives--
-            if(lives < 1){
-                level= 1
-                lives=1
+            if(!premium){
+                lives--
+                if(lives < 1){
+                    level= 1
+                    lives=1
+                }
             }
+
         }
     }
 
@@ -480,12 +564,18 @@ class MainActivity : AppCompatActivity() {
             12->lives = 3
             13->lives = 4
         }
+        if(premium)
+            lives = 9999999
+
     }
 
 
     private fun setLevelParameters(){
         val tvLiveData = findViewById<TextView>(R.id.tvLiveData)
         tvLiveData.text = lives.toString()
+
+        if(premium)
+            tvLiveData.text = "∞"
 
         val tvLevelNumber = findViewById<TextView>(R.id.tvLevelNumber)
         tvLevelNumber.text = level.toString()
@@ -495,6 +585,8 @@ class MainActivity : AppCompatActivity() {
         tvBonusData.text = ""
 
         setLevelMoves()
+        moves = levelMoves
+
         movesRequired = setMovesRequired()
     }
 
@@ -658,7 +750,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun showMessage(title: String, action: String, gameOver: Boolean) {
+    private fun showMessage(title: String, action: String, gameOver: Boolean, endGame: Boolean = false) {
         gaming = false
         nextLevel = !gameOver
 
@@ -674,7 +766,9 @@ class MainActivity : AppCompatActivity() {
         var score: String = ""
         if(gameOver){
 
-            showAdInterstitial()
+            if(!premium)
+                showAdInterstitial()
+
             score = "Score " + (levelMoves-moves) + "/" + levelMoves
             string_share = "This game makes me sick!! (" +
                     score + "). https://concepto.de/wp-content/uploads/2021/07/caballos-e1626738224231.jpg"
@@ -683,6 +777,9 @@ class MainActivity : AppCompatActivity() {
             string_share = "Let's go!!, New Challenge Completed. Level: $level (" +
                     score + "). https://concepto.de/wp-content/uploads/2021/07/caballos-e1626738224231.jpg"
         }
+
+        if(endGame)
+            score = ""
 
         var tvScoreMessage = findViewById<TextView>(R.id.tvScoreMessage)
         tvScoreMessage.text = score
@@ -765,9 +862,9 @@ class MainActivity : AppCompatActivity() {
     private fun paintOptions(x: Int, y: Int){
         var iv: ImageView = findViewById(resources.getIdentifier("c$x$y", "id", packageName))
         if( checkColorCell(x,y) == "Black" ){
-            iv.setBackgroundResource(R.drawable.option_black)
+            iv.setBackgroundResource(optionBlack)
         }else{
-            iv.setBackgroundResource(R.drawable.option_white)
+            iv.setBackgroundResource(optionWhite)
         }
     }
 
@@ -896,27 +993,37 @@ class MainActivity : AppCompatActivity() {
 
     private fun startGame(){
 
-        if(unloadedAd == true){
+        if(unloadedAd == true && premium == false){
             getReadyAds()
         }
 
 
 
         setLevel()
+        if(level > LAST_LEVEL){
+            if(premium){
+                showMessage("You've beaten the game", "Wait for more levels", false, true)
+            }else{
+                showMessage("More levels available only with premium",
+                    "Get Premium Access",
+                    false, true)
+            }
+        }else{
+            setLevelParameters()
 
-        setLevelParameters()
+            resetBoard()
+            clearBoard()
+
+            setBoardLevel()
+
+            setFirstPosition()
+
+            resetTime()
+            startTime()
+            gaming = true
+        }
 
 
-        resetBoard()
-        clearBoard()
-
-        setBoardLevel()
-
-        setFirstPosition()
-
-        resetTime()
-        startTime()
-        gaming = true
     }
 
 }
