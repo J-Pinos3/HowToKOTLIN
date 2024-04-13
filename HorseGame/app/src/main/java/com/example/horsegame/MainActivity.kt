@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initSounds()
 
         initScreenGame()
 
@@ -115,6 +116,24 @@ class MainActivity : AppCompatActivity() {
 
 
     }//on create
+
+
+    private fun initSounds() {
+        //R.raw.movement is the mp3 file, ill put the txt so in order to avoid error highlight
+        //there should be 4 different files
+        mpMovement = MediaPlayer.create(this, R.raw.guia)
+        mpMovement.isLooping = false
+
+        mpBonus = MediaPlayer.create(this, R.raw.guia)
+        mpBonus.isLooping = false
+
+        mpGameOver = MediaPlayer.create(this, R.raw.guia)
+        mpGameOver.isLooping = false
+
+        mpYouWin = MediaPlayer.create(this, R.raw.guia)
+        mpYouWin.isLooping = false
+
+    }
 
 
     override fun onResume() {
@@ -438,6 +457,9 @@ class MainActivity : AppCompatActivity() {
             var tvBonusData = findViewById<TextView>(R.id.tvBonusData)
             tvBonusData.text = " + ${bonus}"
 
+            mpBonus.start()
+        }else{
+            mpMovement.start()
         }
 
         board[x][y] = 1
@@ -765,7 +787,7 @@ class MainActivity : AppCompatActivity() {
 
         var score: String = ""
         if(gameOver){
-
+            mpGameOver.start()
             if(!premium)
                 showAdInterstitial()
 
@@ -773,6 +795,8 @@ class MainActivity : AppCompatActivity() {
             string_share = "This game makes me sick!! (" +
                     score + "). https://concepto.de/wp-content/uploads/2021/07/caballos-e1626738224231.jpg"
         }else{
+            mpYouWin.start()
+
             score = tvTimeData.text.toString()
             string_share = "Let's go!!, New Challenge Completed. Level: $level (" +
                     score + "). https://concepto.de/wp-content/uploads/2021/07/caballos-e1626738224231.jpg"
