@@ -1,0 +1,19 @@
+1) dependency injection
+    1.1 hilt application class with @HiltAndroidApp annotation
+    1.2 object with @Module annotation
+
+2) room
+    2.1 in order to send the data class to the fragments
+        my data class (ENTITY) needs to extend from Parcelable
+        and use @Parcelize
+
+    2.2 Create a database class and user @Database annotation
+
+    2.3 create a dao interface and user @Dao annotation
+        contains methods that the app can use
+
+3) Fragments with the @AndroidEntryPoint annotation
+
+minute: 00:00
+#8
+https://www.youtube.com/watch?v=ImY58l-iepE&list=PLMP_OkCD54dPGjJB3sDffM6AM_UsAzcOv&index=8

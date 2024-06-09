@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="40dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="60dp"
+        android:src="@drawable/frame"
+        android:layout_gravity="top|center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get ready to cooke like a pro."
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:typeface="sans"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textAlignment="textStart"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Master the art of cooking with our stunning recipe visuals and step-by-step instructions"
+        android:maxLines="2"
+        android:textSize="12sp"
+        android:textColor="@color/gray"
+        android:layout_marginTop="30dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's Start"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        android:drawableTint="@color/white"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="20dp"
+        android:layout_gravity="end"
+        />
+
+</LinearLayout>

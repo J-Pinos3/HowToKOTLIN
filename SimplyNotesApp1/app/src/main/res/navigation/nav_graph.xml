@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/noteFragment">
+
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.reverb.notesapp.ui.NoteFragment"
+        android:label="NoteFragment"
+        tools:layout="@layout/fragment_notes">
+        <action
+            android:id="@+id/action_noteFragment_to_addEditNoteFragment"
+            app:destination="@id/addEditNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditNoteFragment"
+        android:name="com.reverb.notesapp.ui.AddEditNoteFragment"
+        android:label="AddEditNoteFragment"
+        tools:layout="@layout/fragment_addedit_notes">
+        <action
+            android:id="@+id/action_addEditNoteFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+        <argument
+            android:name="noteArg"
+            app:argType="com.reverb.notesapp.data.entity.Note"
+            app:nullable="true" />
+    </fragment>
+</navigation>
