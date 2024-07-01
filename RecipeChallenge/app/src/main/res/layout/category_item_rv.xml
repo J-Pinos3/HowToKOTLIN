@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp">
+
+    <TextView
+        android:id="@+id/tvCategoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Seafood"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="2dp"
+        android:background="@drawable/rounded_category_button"
+        android:backgroundTint="#30009C"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        />
+
+</androidx.cardview.widget.CardView>

@@ -1,13 +1,14 @@
 package com.reverb.mvvmex.domain
 
+import com.reverb.mvvmex.data.QuoteRepository
 import com.reverb.mvvmex.data.model.QuoteModel
-import com.reverb.mvvmex.data.model.QuoteProvider
+import com.reverb.mvvmex.domain.model.Quote
 import javax.inject.Inject
 
-class GetRandomQuoteUseCase @Inject constructor( private val quoteProvider: QuoteProvider){
+class GetRandomQuoteUseCase @Inject constructor( private val repository: QuoteRepository){
 
-    operator fun invoke(): QuoteModel?{
-        val quotes = quoteProvider.quotes
+    suspend operator fun invoke(): Quote?{
+        val quotes = repository.getAllQuotesFromDataBase()
         if( !quotes.isNullOrEmpty() ){
             val random = (quotes.indices).random()
             return quotes[random]

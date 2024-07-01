@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="meal_image_rv">
+        <item name="cornerFamily">rounded</item>
+        <!--  <item name="cornerFamily">cut</item>  -->
+        <item name="cornerSize">10%</item>
+    </style>
+
+
+
+</resources>
