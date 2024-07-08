@@ -1,5 +1,6 @@
 package com.reverb.recipechallenge.view.fragments
 
+import android.icu.text.Transliterator.Position
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.reverb.recipechallenge.databinding.HomeFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.util.Resource
+import com.reverb.recipechallenge.view.adapter.CategoriesAdapter
 import com.reverb.recipechallenge.view.adapter.MealsViewedAdapter
+import com.reverb.recipechallenge.viewmodel.CategoryViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -21,7 +24,9 @@ class HomeFragment: Fragment() {
 
     private lateinit var binding: HomeFragmentLayoutBinding
     private val mealViewModel by viewModels<MealViewModel> ()
+    private val categoryViewModel by viewModels<CategoryViewModel> ()
     private val mealsViewedAdapter by lazy { MealsViewedAdapter(){ meal ->  onItemMealSelected(meal)} }
+    private val categoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +42,7 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecentlyViewedMealsRv()
+        initCategoriesRv()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             mealViewModel.mealsResponse.collectLatest {
@@ -53,15 +59,45 @@ class HomeFragment: Fragment() {
             }
         }
 
-    }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            categoryViewModel.categoriesResponse.collectLatest {
+                when(it){
+                    is Resource.Loading -> { }
+                    is Resource.Success -> {
+                        categoriesAdapter.differList.submitList(it.data)
+                    }
+                    is Resource.Error -> { println("Errors occurred when getting categories") }
+                    else -> Unit
+                }
+            }
+        }
+
+    }//ON VIEW CREATED
+
+
 
     private fun onItemMealSelected(meal: Meal){
         /**
-         * THIS FUNCTION WILL SEND THE MEAL TO THE MEAL RECIPE FRAGMENT
+         * TODO THIS FUNCTION WILL SEND THE MEAL TO THE MEAL RECIPE FRAGMENT
          *
          * */
     }
 
+    private fun onCategorySelected(position: Int){
+        categoriesAdapter.differList.currentList[position].isSelected = !categoriesAdapter.differList.currentList[position].isSelected
+        categoriesAdapter.notifyItemChanged(position)
+    }
+
+
+    private fun initCategoriesRv() {
+        binding.rvFoodCategories.apply {
+            adapter = categoriesAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            )
+        }
+    }
 
     private fun initRecentlyViewedMealsRv(){
         binding.rvRecentlyViewed.apply {
