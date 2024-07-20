@@ -18,7 +18,7 @@ class MealsViewedViewHolder(private val binding: MealItemRvBinding): RecyclerVie
         }
 
         itemView.setOnClickListener {
-            Snackbar.make(binding.root, "item view", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(binding.root, "first recycler", Snackbar.LENGTH_LONG).show()
             onMealSelected(meal)
         }
     }

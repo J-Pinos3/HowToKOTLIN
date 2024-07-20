@@ -1,6 +1,5 @@
 package com.reverb.recipechallenge.view.fragments
 
-import android.icu.text.Transliterator.Position
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,22 +10,30 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.reverb.recipechallenge.databinding.HomeFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
+import com.reverb.recipechallenge.model.datamodel.MealList
+import com.reverb.recipechallenge.model.datamodel.MealResume
 import com.reverb.recipechallenge.util.Resource
 import com.reverb.recipechallenge.view.adapter.CategoriesAdapter
+import com.reverb.recipechallenge.view.adapter.FoodsByCategoryAdapter
 import com.reverb.recipechallenge.view.adapter.MealsViewedAdapter
 import com.reverb.recipechallenge.viewmodel.CategoryViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class HomeFragment: Fragment() {
 
     private lateinit var binding: HomeFragmentLayoutBinding
     private val mealViewModel by viewModels<MealViewModel> ()
     private val categoryViewModel by viewModels<CategoryViewModel> ()
+
     private val mealsViewedAdapter by lazy { MealsViewedAdapter(){ meal ->  onItemMealSelected(meal)} }
     private val categoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
+
+    private val foodsByCategoryAdapter by lazy { FoodsByCategoryAdapter(){ mealresume -> onItemResumeMealSelected(mealresume) } }
+
+    private val foodIds = arrayListOf<MealResume>()
+    private var foodMealsList = mutableListOf<Meal>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +48,12 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //call it manually the first time, then with the adapter RV
+
         initRecentlyViewedMealsRv()
         initCategoriesRv()
+        initFoodsByCategoryRv()
+
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             mealViewModel.mealsResponse.collectLatest {
@@ -51,6 +62,7 @@ class HomeFragment: Fragment() {
                     is Resource.Success -> {
                         //println("List of Meals: ${it.data}")
                         mealsViewedAdapter.differList.submitList(it.data)
+
                     }
                     is Resource.Error -> { println("List of ERRORS") }
                     else -> Unit
@@ -73,6 +85,36 @@ class HomeFragment: Fragment() {
             }
         }
 
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            mealViewModel.filteredByCategoryResponse.collectLatest {
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        foodIds.addAll(it.data!!)//LISTA CON LOS IDS DE LA COMIDA Y LA FOTICO
+                        foodsByCategoryAdapter.differ.submitList(it.data)
+                    }
+                    is Resource.Error -> { println(it) }
+                    else -> Unit
+                }
+            }
+        }
+
+
+        // FIXME: function will be used when the user picks a pick by category
+//        lifecycleScope.launchWhenStarted {
+//            mealViewModel.mealsByCategory.collectLatest {
+//                when(it){
+//                    is Resource.Loading -> {}
+//                    is Resource.Success -> {
+//                        foodMealsList.addAll( it.data!! )//LISTA DE OBJETOS MEAL
+//                    }
+//                    is Resource.Error -> { print(it) }
+//                    else -> Unit
+//                }
+//            }
+//        }
+
     }//ON VIEW CREATED
 
 
@@ -84,11 +126,30 @@ class HomeFragment: Fragment() {
          * */
     }
 
+    private fun onItemResumeMealSelected(mealResume: MealResume){
+        /**
+         * TODO THIS FUNCTION WILL SEND THE MEAL TO THE MEAL RECIPE FRAGMENT
+         *
+         * */
+    }
+
+
     private fun onCategorySelected(position: Int){
+        mealViewModel.getMealsIdByCategory(categoriesAdapter.differList.currentList[position].strCategory)
+
         categoriesAdapter.differList.currentList[position].isSelected = !categoriesAdapter.differList.currentList[position].isSelected
         categoriesAdapter.notifyItemChanged(position)
     }
 
+
+    private fun initFoodsByCategoryRv() {
+        binding.rvFoods.apply {
+            adapter = foodsByCategoryAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.VERTICAL, false
+            )
+        }
+    }
 
     private fun initCategoriesRv() {
         binding.rvFoodCategories.apply {
@@ -97,6 +158,7 @@ class HomeFragment: Fragment() {
                 requireContext(), LinearLayoutManager.HORIZONTAL, false
             )
         }
+
     }
 
     private fun initRecentlyViewedMealsRv(){

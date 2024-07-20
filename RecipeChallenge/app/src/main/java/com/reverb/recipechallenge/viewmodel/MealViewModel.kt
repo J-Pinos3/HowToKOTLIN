@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.model.datamodel.MealList
+import com.reverb.recipechallenge.model.datamodel.MealResume
 import com.reverb.recipechallenge.repository.MealRepository
 import com.reverb.recipechallenge.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class MealViewModel: ViewModel(){
 
@@ -19,6 +21,12 @@ class MealViewModel: ViewModel(){
 
     private val _mealsResponse = MutableStateFlow<Resource<List<Meal>>>(Resource.Unspecified())
     val mealsResponse = _mealsResponse.asStateFlow()
+
+    private val _filteredByCaetegoryResponse = MutableStateFlow< Resource<List<MealResume>> >(Resource.Unspecified())
+    val filteredByCategoryResponse = _filteredByCaetegoryResponse.asStateFlow()
+
+    private val _mealsByCategory = MutableStateFlow< Resource<List<Meal>> >(Resource.Unspecified())
+    val mealsByCategory = _mealsByCategory.asStateFlow()
 
     init {
         getListOfMeals()
@@ -38,5 +46,39 @@ class MealViewModel: ViewModel(){
         }
     }
 
+    fun getMealsIdByCategory(category: String){
+        viewModelScope.launch { _filteredByCaetegoryResponse.emit(Resource.Loading()) }
 
-}
+        viewModelScope.launch{
+            val response = repository.getFoodIdByCategoryRep(category)
+            if(response.isSuccessful && response.body()?.meals != null){
+                response.body()?.meals.let {
+                    _filteredByCaetegoryResponse.emit(Resource.Success(it!!))
+                }
+            }else{
+                _filteredByCaetegoryResponse.emit(Resource.Error("There's no list by category"))
+            }
+        }
+    }
+
+    fun getMealsById(mealId: String){
+        viewModelScope.launch { _mealsByCategory.emit(Resource.Loading()) }
+        var errorMessage = ""
+        viewModelScope.launch {
+
+            val response = repository.getMealRepById(mealId)
+            if(response.isSuccessful && response.body()?.meals != null){
+                response!!.body()?.meals?.let {
+                    _mealsByCategory.emit(Resource.Success( it ))
+                }
+            }else{
+                errorMessage = "There's no food with that Id"
+                _mealsByCategory.emit(Resource.Error(errorMessage))
+            }
+
+
+        }
+    }
+
+
+}//MEAL VIEW MODEL

@@ -10,5 +10,7 @@ class MealRepository {
 
     suspend fun getRandomMealRep() =  RetrofitHelper.consumeAPI.getRandomMeal("ec")
 
+    suspend fun getFoodIdByCategoryRep(category: String) = RetrofitHelper.consumeAPI.getFoodIdByCategory(category)
 
+    suspend fun getMealRepById(mealId: String) = RetrofitHelper.consumeAPI.findMealById(mealId = mealId)
 }
