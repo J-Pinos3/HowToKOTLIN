@@ -28,7 +28,7 @@
             android:text="Let's get cooking!"
             />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
             android:id="@+id/tilLookForRecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,16 +38,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
             android:textColorHint="@color/gray"
+            android:background="@drawable/rounded_text_box"
             android:hint="I'm looking for?"
->
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:drawableEnd="@drawable/ic_search"
+            android:paddingHorizontal="20dp"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tietLookForRecipe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_search"
-                android:maxLines="2" />
-        </com.google.android.material.textfield.TextInputLayout>
 
 
         <LinearLayout

@@ -1,0 +1,17 @@
+Sources of Information:
+https://stackoverflow.com/questions/12142021/how-can-i-do-something-0-5-seconds-after-text-changed-in-my-edittext-control
+
+DONE:
+    1) Search meals viewholder
+    2) Search meals adapter
+    3) navigate from home fragment to search fragment
+    4) Implement search meal in the search Fragment within the textwatcher
+    5) Implement the viewmodel's searchMealsByName function in search Fragment
+
+PROGRESS:
+    6) Render meal items in SearchMealsViewHolder for the search fragment
+
+ERRORS:
+
+
+TODO_:

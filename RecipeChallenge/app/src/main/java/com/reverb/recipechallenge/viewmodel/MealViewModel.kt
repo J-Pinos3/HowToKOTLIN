@@ -28,6 +28,9 @@ class MealViewModel: ViewModel(){
     private val _mealsByCategory = MutableStateFlow< Resource<List<Meal>> >(Resource.Unspecified())
     val mealsByCategory = _mealsByCategory.asStateFlow()
 
+    private val _searchResponse = MutableStateFlow<Resource<List<Meal>>>(Resource.Unspecified())
+    val searchResponse = _searchResponse.asStateFlow()
+
     init {
         getListOfMeals()
     }
@@ -77,6 +80,20 @@ class MealViewModel: ViewModel(){
             }
 
 
+        }
+    }
+
+    fun searchMealsByName(mealName: String){
+        viewModelScope.launch {
+            _searchResponse.emit(Resource.Loading())
+            val response = repository.searchMealsByName(mealName)
+            if( response.isSuccessful && response.body()?.meals != null ){
+                response.body()?.meals.let {
+                    _searchResponse.emit(Resource.Success(it!!))
+                }
+            }else{
+                _searchResponse.emit(Resource.Error("Couldn't find a meal with that name"))
+            }
         }
     }
 

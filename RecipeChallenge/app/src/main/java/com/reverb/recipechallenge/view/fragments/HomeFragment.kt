@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.reverb.recipechallenge.R
 import com.reverb.recipechallenge.databinding.HomeFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.model.datamodel.MealList
@@ -91,7 +93,7 @@ class HomeFragment: Fragment() {
                 when(it){
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        foodIds.addAll(it.data!!)//LISTA CON LOS IDS DE LA COMIDA Y LA FOTICO
+                        //foodIds.addAll(it.data!!)//LISTA CON LOS IDS DE LA COMIDA Y LA FOTICO
                         foodsByCategoryAdapter.differ.submitList(it.data)
                     }
                     is Resource.Error -> { println(it) }
@@ -100,6 +102,9 @@ class HomeFragment: Fragment() {
             }
         }
 
+        binding.tilLookForRecipe.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
 
         // FIXME: function will be used when the user picks a pick by category
 //        lifecycleScope.launchWhenStarted {
