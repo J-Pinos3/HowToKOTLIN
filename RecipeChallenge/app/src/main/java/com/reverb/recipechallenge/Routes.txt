@@ -7,11 +7,15 @@ DONE:
     3) navigate from home fragment to search fragment
     4) Implement search meal in the search Fragment within the textwatcher
     5) Implement the viewmodel's searchMealsByName function in search Fragment
+    6) Render meal items in SearchMealsViewHolder for the search fragment
+    8) Fix the ui of the search fragment
+    7) Add search by Categories in search fragment
 
 PROGRESS:
-    6) Render meal items in SearchMealsViewHolder for the search fragment
+
 
 ERRORS:
 
 
 TODO_:
+    9) Create Search Fragment UI

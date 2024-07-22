@@ -33,8 +33,6 @@ class HomeFragment: Fragment() {
 
     private val foodsByCategoryAdapter by lazy { FoodsByCategoryAdapter(){ mealresume -> onItemResumeMealSelected(mealresume) } }
 
-    private val foodIds = arrayListOf<MealResume>()
-    private var foodMealsList = mutableListOf<Meal>()
 
 
     override fun onCreateView(
@@ -151,7 +149,7 @@ class HomeFragment: Fragment() {
         binding.rvFoods.apply {
             adapter = foodsByCategoryAdapter
             layoutManager = LinearLayoutManager(
-                requireContext(), LinearLayoutManager.VERTICAL, false
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
             )
         }
     }

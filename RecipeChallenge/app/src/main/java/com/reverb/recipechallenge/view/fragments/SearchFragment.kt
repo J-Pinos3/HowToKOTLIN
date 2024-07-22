@@ -12,11 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.reverb.recipechallenge.databinding.SearchFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.util.Resource
+import com.reverb.recipechallenge.view.adapter.CategoriesAdapter
 import com.reverb.recipechallenge.view.adapter.SearchMealsAdapter
+import com.reverb.recipechallenge.viewmodel.CategoryViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,8 +30,10 @@ class SearchFragment: Fragment() {
     private lateinit var binding: SearchFragmentLayoutBinding
 
     private val mealViewModel by viewModels<MealViewModel>()
+    private val categoryViewModel by viewModels<CategoryViewModel>()
 
     private val searchMealsAdapter by lazy { SearchMealsAdapter(){meal -> onItemMealSelected(meal) } }
+    private val searchCategoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
 
     private var searchTextWatcher = object: TextWatcher{
         private var timer = Timer()
@@ -49,7 +54,7 @@ class SearchFragment: Fragment() {
                     mealViewModel.searchMealsByName(p0.toString())
                 }
 
-            }, 2000L)
+            }, 800L)
 
         }
 
@@ -68,10 +73,9 @@ class SearchFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initSearchedMealsRv()
+        initSearchByCategoriesRv()
 
-//        binding.tietLookForRecipe.addTextChangedListener {
-//            Log.i("user searches", it.toString())
-//        }
+//        binding.tietLookForRecipe.addTextChangedListener { Log.i("user searches", it.toString())  }
         binding.tietLookForRecipe.addTextChangedListener(searchTextWatcher)
 
 
@@ -90,8 +94,22 @@ class SearchFragment: Fragment() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            categoryViewModel.categoriesResponse.collectLatest {
+                when(it){
+                    is Resource.Loading -> { }
+                    is Resource.Success -> {
+                        searchCategoriesAdapter.differList.submitList(it.data)
+                    }
+                    is Resource.Error -> { println("Errors occurred when getting categories") }
+                    else -> Unit
+                }
+            }
+        }
+
 
     }
+
 
     private fun onItemMealSelected(meal: Meal){
         /**
@@ -99,13 +117,26 @@ class SearchFragment: Fragment() {
          * */
     }
 
+    private fun onCategorySelected(position: Int){
+        mealViewModel.getMealsIdByCategory(searchCategoriesAdapter.differList.currentList[position].strCategory)
+
+        searchCategoriesAdapter.differList.currentList[position].isSelected = !searchCategoriesAdapter.differList.currentList[position].isSelected
+        searchCategoriesAdapter.notifyItemChanged(position)
+    }
+
+    private fun initSearchByCategoriesRv() {
+        binding.rvSearchedCategories.apply {
+            adapter = searchCategoriesAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            )
+        }
+    }
 
     private fun initSearchedMealsRv() {
         binding.rvSearchedMeals.apply {
             adapter = searchMealsAdapter
-            layoutManager = LinearLayoutManager(
-                requireContext(), LinearLayoutManager.VERTICAL, false
-            )
+            layoutManager = GridLayoutManager(  requireContext(), 2, GridLayoutManager.VERTICAL, false   )
         }
     }
 

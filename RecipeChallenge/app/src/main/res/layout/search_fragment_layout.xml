@@ -12,23 +12,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/tvSearchTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp"
+            android:text="@string/discover_the_best_recipes"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
         <LinearLayout
             android:id="@+id/llSearchBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSearchTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:paddingStart="50dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/ibGoBack"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_arrow_backward"
-                android:backgroundTint="@color/white"
-                app:tint="@color/purple_dark"
-                android:layout_gravity="center_vertical" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -62,16 +69,37 @@
         </LinearLayout>
 
 
+        <TextView
+            android:id="@+id/tvSearchesSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recent Searches"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/llSearchBar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearchedCategories"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toBottomOf="@id/tvSearchesSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchedMeals"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/llSearchBar"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/rvSearchedCategories"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

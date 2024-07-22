@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.reverb.recipechallenge.databinding.MealItemRvBinding
 import com.reverb.recipechallenge.databinding.SearchMealItemRvBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.view.viewholder.SearchMealsViewHolder
@@ -27,7 +28,7 @@ class SearchMealsAdapter( private val onItemSelected:(Meal)->Unit ): RecyclerVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMealsViewHolder {
         return SearchMealsViewHolder(
-            SearchMealItemRvBinding.inflate(
+            MealItemRvBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
