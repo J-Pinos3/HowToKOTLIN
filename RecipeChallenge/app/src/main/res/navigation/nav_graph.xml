@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -24,6 +27,9 @@
         <action
             android:id="@+id/action_searchFragment_to_saveFragment"
             app:destination="@id/saveFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/saveFragment"
@@ -40,5 +46,14 @@
         <action
             android:id="@+id/action_introductionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.reverb.recipechallenge.view.fragments.RecipeFragment"
+        android:label="RecipeFragment"
+        tools:layout="@layout/recipe_fragment_layout">
+        <argument
+            android:name="mealIdToSearch"
+            app:argType="string" />
     </fragment>
 </navigation>

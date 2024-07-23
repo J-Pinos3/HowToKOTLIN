@@ -1,5 +1,11 @@
 Sources of Information:
 https://stackoverflow.com/questions/12142021/how-can-i-do-something-0-5-seconds-after-text-changed-in-my-edittext-control
+https://developer.android.com/kotlin/coroutines/coroutines-adv?hl=es-419
+https://medium.com/mindorks/kotlin-withcontext-vs-async-await-7bead6053ca4
+
+
+
+Search about Global scope is it ok to use it?
 
 DONE:
     1) Search meals viewholder
@@ -10,12 +16,29 @@ DONE:
     6) Render meal items in SearchMealsViewHolder for the search fragment
     8) Fix the ui of the search fragment
     7) Add search by Categories in search fragment
+    9) Create Recipe Fragment UI
+    10) Work the Recipe fragment class
+    11) Add navigation to the RecipeFragment in the nav graph
+    12) Send the mealId from Home Fragment to Recipe Fragment
+    13) Send the mealId from Search Fragment to Recipe Fragment
+    14) Receive the mealId in SearchFragment
+    15) Implement the getMealsById of the MealViewModel in the recipe Fragment
+    16) Create a new viewmodel class fot the search fragment
+    17) Deleted search meals by name from meal view model, it'll be in Seach view model
 
+
+    E1) Fix categories RV is not working in Search Fragment
 PROGRESS:
 
 
-ERRORS:
 
 
-TODO_:
-    9) Create Search Fragment UI
+ERRORS - IMPROVEMENTS:
+
+
+_TODO :
+    18) Move getMealById from MealViewModel to a new class RecipeViewModel
+
+
+
+

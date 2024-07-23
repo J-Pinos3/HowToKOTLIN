@@ -1,85 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
-
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        android:text="Back"
-        android:textSize="16dp"
-        android:textColor="@color/orange"
-        android:drawableTint="@color/orange"
-        android:drawablePadding="5dp"
-        android:drawableStart="@drawable/ic_arrow_forward" />
-
-
-    <ImageView
-        android:id="@+id/ivFoodRecipeImage"
-        android:layout_width="360dp"
-        android:layout_height="270dp"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:background="@color/orange"/>
-
-    <TextView
-        android:id="@+id/tvFoodRecipeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="30dp"
-        android:text="Chick'n Burger"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="20sp" />
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvFoodRecipeTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30 min"
-            android:textSize="16sp"
-            android:drawableStart="@drawable/ic_arrow_forward"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtvFoodRecipeSaveRecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
-            android:text="Save"
-            android:textSize="16sp"
-            android:drawableStart="@drawable/frame_10"/>
+            android:text="Back"
+            android:textSize="18sp"
+            android:textColor="@color/orange"
+            android:drawableTint="@color/orange"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_arrow_backward" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivFoodRecipeImage"
+            android:layout_width="360dp"
+            android:layout_height="270dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:src="@color/black"
+            app:shapeAppearanceOverlay="@style/meal_recipe_image"
+            />
+
+        <TextView
+            android:id="@+id/tvFoodRecipeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:text="Chick'n Burger"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvFoodRecipeTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30 min"
+                android:textSize="16sp"
+                android:drawableStart="@drawable/ic_arrow_forward"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvFoodRecipeSaveRecipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Save"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_image"
+                android:paddingEnd="10dp"
+                android:drawableStart="@drawable/frame_11"
+                android:drawableTint="@color/black"
+                android:drawablePadding="5dp"/>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingredients: "
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/tvIngredientsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* asda\n* dsadd"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Procedure: "
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/tvProcedureList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="15dp"
+            android:text="* asda\n* dsadd"
+            android:textSize="16sp"/>
+
     </LinearLayout>
 
+</ScrollView>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ingredients :"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="* asda\n* dsadd"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:textSize="16sp"/>
-
-</LinearLayout>

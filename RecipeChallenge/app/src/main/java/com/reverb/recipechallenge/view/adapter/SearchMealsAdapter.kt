@@ -6,19 +6,33 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.reverb.recipechallenge.databinding.MealItemRvBinding
-import com.reverb.recipechallenge.databinding.SearchMealItemRvBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
+import com.reverb.recipechallenge.model.datamodel.MealResume
 import com.reverb.recipechallenge.view.viewholder.SearchMealsViewHolder
 
-class SearchMealsAdapter( private val onItemSelected:(Meal)->Unit ): RecyclerView.Adapter<SearchMealsViewHolder>() {
+class SearchMealsAdapter( private val onItemSelected:(Any)->Unit ): RecyclerView.Adapter<SearchMealsViewHolder>() {
 
-    private val diffCallBack = object: DiffUtil.ItemCallback<Meal>(){
-        override fun areItemsTheSame(oldItem: Meal, newItem: Meal): Boolean {
-            return  oldItem.idMeal == newItem.idMeal
+    private val diffCallBack = object: DiffUtil.ItemCallback<Any>(){
+        override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
+            var result: Boolean = false
+            if (oldItem is Meal && newItem is Meal)
+                result = oldItem.idMeal == newItem.idMeal
+
+            if(oldItem is MealResume && newItem is MealResume)
+                result =  oldItem.idMeal == newItem.idMeal
+
+            return result
         }
 
-        override fun areContentsTheSame(oldItem: Meal, newItem: Meal): Boolean {
-            return oldItem == newItem
+        override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
+            var result: Boolean = false
+            if (oldItem is Meal && newItem is Meal)
+                result = oldItem == newItem
+
+            if(oldItem is MealResume && newItem is MealResume)
+                result =  oldItem == newItem
+
+            return result
         }
 
     }

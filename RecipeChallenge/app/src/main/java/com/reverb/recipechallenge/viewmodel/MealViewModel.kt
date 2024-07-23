@@ -25,11 +25,10 @@ class MealViewModel: ViewModel(){
     private val _filteredByCaetegoryResponse = MutableStateFlow< Resource<List<MealResume>> >(Resource.Unspecified())
     val filteredByCategoryResponse = _filteredByCaetegoryResponse.asStateFlow()
 
-    private val _mealsByCategory = MutableStateFlow< Resource<List<Meal>> >(Resource.Unspecified())
-    val mealsByCategory = _mealsByCategory.asStateFlow()
+    private val _mealsById = MutableStateFlow< Resource<Meal> >(Resource.Unspecified())
+    val mealsById = _mealsById.asStateFlow()
 
-    private val _searchResponse = MutableStateFlow<Resource<List<Meal>>>(Resource.Unspecified())
-    val searchResponse = _searchResponse.asStateFlow()
+
 
     init {
         getListOfMeals()
@@ -64,38 +63,27 @@ class MealViewModel: ViewModel(){
         }
     }
 
-    fun getMealsById(mealId: String){
-        viewModelScope.launch { _mealsByCategory.emit(Resource.Loading()) }
+    //TODO: MOVE TO RECIPE VIEWMODEL
+    fun getMealById(mealId: String){
+        viewModelScope.launch { _mealsById.emit(Resource.Loading()) }
         var errorMessage = ""
         viewModelScope.launch {
 
             val response = repository.getMealRepById(mealId)
             if(response.isSuccessful && response.body()?.meals != null){
                 response!!.body()?.meals?.let {
-                    _mealsByCategory.emit(Resource.Success( it ))
+                    _mealsById.emit(Resource.Success( it[0] ))
                 }
             }else{
                 errorMessage = "There's no food with that Id"
-                _mealsByCategory.emit(Resource.Error(errorMessage))
+                _mealsById.emit(Resource.Error(errorMessage))
             }
 
 
         }
     }
 
-    fun searchMealsByName(mealName: String){
-        viewModelScope.launch {
-            _searchResponse.emit(Resource.Loading())
-            val response = repository.searchMealsByName(mealName)
-            if( response.isSuccessful && response.body()?.meals != null ){
-                response.body()?.meals.let {
-                    _searchResponse.emit(Resource.Success(it!!))
-                }
-            }else{
-                _searchResponse.emit(Resource.Error("Couldn't find a meal with that name"))
-            }
-        }
-    }
+
 
 
 }//MEAL VIEW MODEL

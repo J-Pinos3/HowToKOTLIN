@@ -104,36 +104,19 @@ class HomeFragment: Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
 
-        // FIXME: function will be used when the user picks a pick by category
-//        lifecycleScope.launchWhenStarted {
-//            mealViewModel.mealsByCategory.collectLatest {
-//                when(it){
-//                    is Resource.Loading -> {}
-//                    is Resource.Success -> {
-//                        foodMealsList.addAll( it.data!! )//LISTA DE OBJETOS MEAL
-//                    }
-//                    is Resource.Error -> { print(it) }
-//                    else -> Unit
-//                }
-//            }
-//        }
 
     }//ON VIEW CREATED
 
 
 
     private fun onItemMealSelected(meal: Meal){
-        /**
-         * TODO THIS FUNCTION WILL SEND THE MEAL TO THE MEAL RECIPE FRAGMENT
-         *
-         * */
+        val actions = HomeFragmentDirections.actionHomeFragmentToRecipeFragment(meal.idMeal)
+        findNavController().navigate(actions)
     }
 
     private fun onItemResumeMealSelected(mealResume: MealResume){
-        /**
-         * TODO THIS FUNCTION WILL SEND THE MEAL TO THE MEAL RECIPE FRAGMENT
-         *
-         * */
+        val actions = HomeFragmentDirections.actionHomeFragmentToRecipeFragment(mealResume.idMeal)
+        findNavController().navigate(actions)
     }
 
 

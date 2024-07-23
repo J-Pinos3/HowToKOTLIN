@@ -11,16 +11,21 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.reverb.recipechallenge.databinding.SearchFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
+import com.reverb.recipechallenge.model.datamodel.MealResume
 import com.reverb.recipechallenge.util.Resource
 import com.reverb.recipechallenge.view.adapter.CategoriesAdapter
 import com.reverb.recipechallenge.view.adapter.SearchMealsAdapter
 import com.reverb.recipechallenge.viewmodel.CategoryViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
+import com.reverb.recipechallenge.viewmodel.SearchViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Timer
@@ -29,8 +34,8 @@ import java.util.TimerTask
 class SearchFragment: Fragment() {
     private lateinit var binding: SearchFragmentLayoutBinding
 
-    private val mealViewModel by viewModels<MealViewModel>()
-    private val categoryViewModel by viewModels<CategoryViewModel>()
+
+    private val searchViewModel by viewModels<SearchViewModel>()
 
     private val searchMealsAdapter by lazy { SearchMealsAdapter(){meal -> onItemMealSelected(meal) } }
     private val searchCategoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
@@ -51,10 +56,10 @@ class SearchFragment: Fragment() {
             timer.schedule(object: TimerTask(){
                 override fun run() {
                     //Log.i("user searches", "after text changed")
-                    mealViewModel.searchMealsByName(p0.toString())
+                    searchViewModel.searchMealsByName(p0.toString())
                 }
 
-            }, 800L)
+            }, 500L)
 
         }
 
@@ -75,14 +80,18 @@ class SearchFragment: Fragment() {
         initSearchedMealsRv()
         initSearchByCategoriesRv()
 
+        lifecycleScope.launch {
+            getAllCategories()
+        }
+
 //        binding.tietLookForRecipe.addTextChangedListener { Log.i("user searches", it.toString())  }
         binding.tietLookForRecipe.addTextChangedListener(searchTextWatcher)
 
 
-        //lifecycleScope.launchWhenStarted { }
 
+        //SEARCH MEALS BY NAME
         lifecycleScope.launch {
-            mealViewModel.searchResponse.collectLatest {
+            searchViewModel.searchMealResponse.collectLatest {
                 when(it){
                     is Resource.Loading -> {}
                     is Resource.Success -> {
@@ -94,8 +103,10 @@ class SearchFragment: Fragment() {
             }
         }
 
+
+        //LIST OF CATEGORIES
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            categoryViewModel.categoriesResponse.collectLatest {
+            searchViewModel.categoriesResponse.collectLatest {
                 when(it){
                     is Resource.Loading -> { }
                     is Resource.Success -> {
@@ -108,17 +119,45 @@ class SearchFragment: Fragment() {
         }
 
 
+        //GET MEALS IDS AND SOME INFO BY CATEGORY AS A FILTER
+        lifecycleScope.launchWhenStarted {
+            searchViewModel.filteredByCategoryResponse.collectLatest {
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        searchMealsAdapter.differList.submitList(it.data)
+                    }
+                    is Resource.Error -> { println(it) }
+                    else -> Unit
+                }
+            }
+        }
+
     }
 
 
-    private fun onItemMealSelected(meal: Meal){
-        /**
-         *  TODO THIS FUNCTION WILL SEND THE MEAL ID TO THE MEAL RECIPE FRAGMENT
-         * */
+    suspend fun getAllCategories(){
+        coroutineScope {
+            val deferred1 = async {    searchViewModel.getListOfCategories()     }
+            deferred1.await()
+        }
+    }
+
+
+    private fun onItemMealSelected(mealItem: Any){
+        if (mealItem is MealResume){
+            val actions = SearchFragmentDirections.actionSearchFragmentToRecipeFragment(mealItem.idMeal)
+            findNavController().navigate(actions)
+        }
+
+        if (mealItem is Meal){
+            val actions = SearchFragmentDirections.actionSearchFragmentToRecipeFragment(mealItem.idMeal)
+            findNavController().navigate(actions)
+        }
     }
 
     private fun onCategorySelected(position: Int){
-        mealViewModel.getMealsIdByCategory(searchCategoriesAdapter.differList.currentList[position].strCategory)
+        searchViewModel.getMealsIdByCategory(searchCategoriesAdapter.differList.currentList[position].strCategory)
 
         searchCategoriesAdapter.differList.currentList[position].isSelected = !searchCategoriesAdapter.differList.currentList[position].isSelected
         searchCategoriesAdapter.notifyItemChanged(position)
