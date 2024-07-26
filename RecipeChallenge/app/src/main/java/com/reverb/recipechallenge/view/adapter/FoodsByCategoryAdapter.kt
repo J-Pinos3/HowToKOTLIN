@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.reverb.recipechallenge.databinding.MealItemRvBinding
-import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.model.datamodel.MealResume
 import com.reverb.recipechallenge.view.viewholder.FoodsByCategoryViewHolder
 
-class FoodsByCategoryAdapter(private val onSelectedItem: (MealResume)-> Unit)
-    :RecyclerView.Adapter<FoodsByCategoryViewHolder>()
+class FoodsByCategoryAdapter(private val onSelectedItem: (MealResume)-> Unit,
+        private val onSaveMeal: (MealResume) -> Unit
+    ):RecyclerView.Adapter<FoodsByCategoryViewHolder>()
 {
 
     private val diffCallback = object: DiffUtil.ItemCallback<MealResume>(){
@@ -35,7 +35,7 @@ class FoodsByCategoryAdapter(private val onSelectedItem: (MealResume)-> Unit)
 
     override fun onBindViewHolder(holder: FoodsByCategoryViewHolder, position: Int) {
         val mealResume = differ.currentList[position]
-        holder.render(mealResume, onSelectedItem)
+        holder.render(mealResume, onSelectedItem, onSaveMeal)
     }
 
     override fun getItemCount(): Int = differ.currentList.size

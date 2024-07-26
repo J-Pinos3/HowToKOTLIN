@@ -8,13 +8,17 @@ import com.reverb.recipechallenge.model.datamodel.Meal
 
 class MealsViewedViewHolder(private val binding: MealItemRvBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun render(meal: Meal, onMealSelected:(Meal) -> Unit){
+    fun render(meal: Meal, onMealSelected: (Meal) -> Unit, onSaveMeal: (Meal) -> Unit){
         binding.apply {
             Glide.with(ivMealImage.context).load(meal.strMealThumb)
                 .into(ivMealImage)
 
             tvMealTimePrep.text = meal.idMeal.substring(0,2) + " min"
             tvMealName.text = meal.strMeal
+
+            tvSaveMeal.setOnClickListener {
+                onSaveMeal(meal)
+            }
         }
 
         itemView.setOnClickListener {

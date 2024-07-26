@@ -28,10 +28,20 @@ class HomeFragment: Fragment() {
     private val mealViewModel by viewModels<MealViewModel> ()
     private val categoryViewModel by viewModels<CategoryViewModel> ()
 
-    private val mealsViewedAdapter by lazy { MealsViewedAdapter(){ meal ->  onItemMealSelected(meal)} }
+    private val mealsViewedAdapter by lazy {
+        MealsViewedAdapter(
+            onItemSelected = { meal ->  onItemMealSelected(meal)},
+            onSaveMeal = {  meal->  onSaveViewedMeal(meal)  }
+        )
+    }
     private val categoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
 
-    private val foodsByCategoryAdapter by lazy { FoodsByCategoryAdapter(){ mealresume -> onItemResumeMealSelected(mealresume) } }
+    private val foodsByCategoryAdapter by lazy {
+        FoodsByCategoryAdapter(
+            onSelectedItem = { mealresume -> onItemResumeMealSelected(mealresume) },
+            onSaveMeal = { mealResume ->  onSaveMealByCategory(mealResume) }
+        )
+    }
 
 
 
@@ -106,6 +116,15 @@ class HomeFragment: Fragment() {
 
 
     }//ON VIEW CREATED
+
+    //functions to save meals to favorites
+    private fun onSaveMealByCategory(mealResume: MealResume){
+        //TODO ADD SAVE ITEM TO ROOM DB
+    }
+
+    private fun onSaveViewedMeal(meal: Meal){
+        //TODO ADD SAVE ITEM TO ROOM DB
+    }
 
 
 

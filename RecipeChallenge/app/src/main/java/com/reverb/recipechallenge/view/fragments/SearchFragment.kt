@@ -37,7 +37,12 @@ class SearchFragment: Fragment() {
 
     private val searchViewModel by viewModels<SearchViewModel>()
 
-    private val searchMealsAdapter by lazy { SearchMealsAdapter(){meal -> onItemMealSelected(meal) } }
+    private val searchMealsAdapter by lazy {
+        SearchMealsAdapter(
+            onItemSelected = {mealItem -> onItemMealSelected(mealItem) },
+            onSaveMeal = { mealItem -> onSaveSearchedMeal(mealItem) }
+        )
+    }
     private val searchCategoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
 
     private var searchTextWatcher = object: TextWatcher{
@@ -141,6 +146,10 @@ class SearchFragment: Fragment() {
             val deferred1 = async {    searchViewModel.getListOfCategories()     }
             deferred1.await()
         }
+    }
+
+    private fun onSaveSearchedMeal(mealItem: Any){
+        //TODO ADD SAVE ITEM TO ROOM DB
     }
 
 

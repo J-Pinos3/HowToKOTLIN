@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.reverb.recipechallenge.databinding.RecipeFragmentLayoutBinding
+import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.util.Resource
 import com.reverb.recipechallenge.viewmodel.MealViewModel
 import kotlinx.coroutines.Deferred
@@ -66,6 +67,14 @@ class RecipeFragment: Fragment() {
                 }
             }
         }
+
+        binding.mtvFoodRecipeSaveRecipe.setOnClickListener {
+
+        }
+    }
+
+    private fun saveMealToDb(meal: Meal){
+        //todo add the functionality to save meal to favorites
     }
 
     suspend fun searchMealById(mealId: String){

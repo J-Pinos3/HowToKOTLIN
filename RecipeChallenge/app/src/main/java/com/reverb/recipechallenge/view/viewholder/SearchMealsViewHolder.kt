@@ -9,7 +9,7 @@ import com.reverb.recipechallenge.model.datamodel.MealResume
 
 class SearchMealsViewHolder(private val binding: MealItemRvBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun render(mealItem: Any, onItemSelected: (Any) -> Unit){
+    fun render(mealItem: Any, onItemSelected: (Any) -> Unit, onSaveMeal: (Any) -> Unit){
         binding.apply {
 
             if(mealItem is MealResume){
@@ -20,6 +20,10 @@ class SearchMealsViewHolder(private val binding: MealItemRvBinding): RecyclerVie
                 Glide.with(ivMealImage.context).load(mealItem.strMealThumb).into(ivMealImage)
                 tvMealName.text = mealItem.strMeal
                 tvMealTimePrep.text = mealItem.idMeal.substring(0,2) + " min"
+            }
+
+            tvSaveMeal.setOnClickListener {
+                onSaveMeal(mealItem)
             }
 
         }

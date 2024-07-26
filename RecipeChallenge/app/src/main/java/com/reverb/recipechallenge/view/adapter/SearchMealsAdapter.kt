@@ -10,7 +10,9 @@ import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.model.datamodel.MealResume
 import com.reverb.recipechallenge.view.viewholder.SearchMealsViewHolder
 
-class SearchMealsAdapter( private val onItemSelected:(Any)->Unit ): RecyclerView.Adapter<SearchMealsViewHolder>() {
+class SearchMealsAdapter( private val onItemSelected:(Any)->Unit,
+        private val onSaveMeal:(Any) -> Unit
+    ): RecyclerView.Adapter<SearchMealsViewHolder>() {
 
     private val diffCallBack = object: DiffUtil.ItemCallback<Any>(){
         override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
@@ -51,7 +53,7 @@ class SearchMealsAdapter( private val onItemSelected:(Any)->Unit ): RecyclerView
 
 
     override fun onBindViewHolder(holder: SearchMealsViewHolder, position: Int) {
-        holder.render(differList.currentList[position], onItemSelected)
+        holder.render(differList.currentList[position], onItemSelected, onSaveMeal)
     }
 
     override fun getItemCount(): Int = differList.currentList.size

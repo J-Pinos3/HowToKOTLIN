@@ -26,6 +26,13 @@ DONE:
     16) Create a new viewmodel class fot the search fragment
     17) Deleted search meals by name from meal view model, it'll be in Seach view model
 
+    19) Add Click listeners for the save button of meal ui's (meal item rv)
+        meals viewed viewholder for the home fragment
+    20) Add a new function to meals viewed adapter, foods by category adapter and their viewholder,
+        that function will be used for the save to favorites button for the home fragment
+    21) Add click listeners for save button of meal ui and viewholder for search fragment
+    22) Add a new function to search meals adapter and search meals viewholder
+        that function will be used for the save to favorites button for the search fragment
 
     E1) Fix categories RV is not working in Search Fragment
 PROGRESS:
