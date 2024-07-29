@@ -13,7 +13,9 @@ import com.reverb.recipechallenge.databinding.ActivityMainBinding
 import com.reverb.recipechallenge.view.fragments.HomeFragment
 import com.reverb.recipechallenge.view.fragments.SavedFragment
 import com.reverb.recipechallenge.view.fragments.SearchFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding

@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
+    id("kotlin-kapt")
+    id("kotlin-parcelize")
+    id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs")
 
 }
@@ -65,6 +67,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
