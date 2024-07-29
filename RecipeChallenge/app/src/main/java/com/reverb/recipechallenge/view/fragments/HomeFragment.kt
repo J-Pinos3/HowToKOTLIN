@@ -14,19 +14,25 @@ import com.reverb.recipechallenge.databinding.HomeFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.model.datamodel.MealList
 import com.reverb.recipechallenge.model.datamodel.MealResume
+import com.reverb.recipechallenge.model.datamodel.toMealEntity
 import com.reverb.recipechallenge.util.Resource
 import com.reverb.recipechallenge.view.adapter.CategoriesAdapter
 import com.reverb.recipechallenge.view.adapter.FoodsByCategoryAdapter
 import com.reverb.recipechallenge.view.adapter.MealsViewedAdapter
 import com.reverb.recipechallenge.viewmodel.CategoryViewModel
+import com.reverb.recipechallenge.viewmodel.FavoritesViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
+@AndroidEntryPoint
 class HomeFragment: Fragment() {
 
     private lateinit var binding: HomeFragmentLayoutBinding
     private val mealViewModel by viewModels<MealViewModel> ()
     private val categoryViewModel by viewModels<CategoryViewModel> ()
+    private val favoritesViewModel by viewModels<FavoritesViewModel>()
 
     private val mealsViewedAdapter by lazy {
         MealsViewedAdapter(
@@ -114,16 +120,28 @@ class HomeFragment: Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
 
+        /**
+         *  From [HomeFragment] I will navigate only to [SavedFragment] aka FavoritesFragment
+         *  after the user inserts a meal to favorites database
+         **/
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            favoritesViewModel.mealEvents.collect(){
+                if( it is FavoritesViewModel.FavoriteMealsEvents.NavigateToFavoritesMeals ){
+                    findNavController().navigate(R.id.action_homeFragment_to_saveFragment)
+                }
+            }
+        }
+
 
     }//ON VIEW CREATED
 
     //functions to save meals to favorites
     private fun onSaveMealByCategory(mealResume: MealResume){
-        //TODO ADD SAVE ITEM TO ROOM DB
+        favoritesViewModel.insertfavoriteMeal( mealResume.toMealEntity() )
     }
 
     private fun onSaveViewedMeal(meal: Meal){
-        //TODO ADD SAVE ITEM TO ROOM DB
+        favoritesViewModel.insertfavoriteMeal( meal.toMealEntity() )
     }
 
 

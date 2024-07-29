@@ -11,7 +11,7 @@ fun mergeMealIngredientsMeasure(meal: Meal): String{
 
     val ingredients = getIngredients(meal)
     val measures = getMeasures(meal = meal)
-    for ( index in 0 .. ingredients.size ){
+    for ( index in 0 until ingredients.size ){
         if(   ( !(measures[index].isNullOrBlank()) ) && ( !(ingredients[index].isNullOrBlank()) )   ){
             ingredientsAndMeasures += (" • " + measures[index] + " " +  ingredients[index] + "\n")
         }

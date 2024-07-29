@@ -15,17 +15,21 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.reverb.recipechallenge.R
 import com.reverb.recipechallenge.databinding.SearchFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.model.datamodel.MealResume
+import com.reverb.recipechallenge.model.datamodel.toMealEntity
 import com.reverb.recipechallenge.util.Resource
 import com.reverb.recipechallenge.view.adapter.CategoriesAdapter
 import com.reverb.recipechallenge.view.adapter.SearchMealsAdapter
 import com.reverb.recipechallenge.viewmodel.CategoryViewModel
+import com.reverb.recipechallenge.viewmodel.FavoritesViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
 import com.reverb.recipechallenge.viewmodel.SearchViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Timer
@@ -36,6 +40,7 @@ class SearchFragment: Fragment() {
 
 
     private val searchViewModel by viewModels<SearchViewModel>()
+    private val favoritesViewModel by viewModels<FavoritesViewModel>()
 
     private val searchMealsAdapter by lazy {
         SearchMealsAdapter(
@@ -138,6 +143,18 @@ class SearchFragment: Fragment() {
             }
         }
 
+        /**
+         *  From [SearchFragment] I will navigate to [SavedFragment] aka FavoritesFragment
+         *  after the user inserts a meal to favorites database
+         **/
+        lifecycleScope.launchWhenStarted {
+            favoritesViewModel.mealEvents.collect(){
+                if( it is FavoritesViewModel.FavoriteMealsEvents.NavigateToFavoritesMeals ){
+                    findNavController().navigate(R.id.action_searchFragment_to_saveFragment)
+                }
+            }
+        }
+
     }
 
 
@@ -149,7 +166,13 @@ class SearchFragment: Fragment() {
     }
 
     private fun onSaveSearchedMeal(mealItem: Any){
-        //TODO ADD SAVE ITEM TO ROOM DB
+        if (mealItem is Meal){
+            favoritesViewModel.insertfavoriteMeal( mealItem.toMealEntity() )
+        }
+
+        if(mealItem is MealResume){
+            favoritesViewModel.insertfavoriteMeal( mealItem.toMealEntity() )
+        }
     }
 
 

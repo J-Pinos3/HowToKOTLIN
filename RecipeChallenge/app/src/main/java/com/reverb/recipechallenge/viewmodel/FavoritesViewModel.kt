@@ -6,6 +6,7 @@ import com.reverb.recipechallenge.model.database.dao.MealDao
 import com.reverb.recipechallenge.model.datamodel.MealEntity
 import com.reverb.recipechallenge.repository.DataBaseRepository
 import com.reverb.recipechallenge.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class FavoritesViewModel @Inject constructor(
     private val mealDao: MealDao
 ): ViewModel() {
@@ -44,6 +46,7 @@ class FavoritesViewModel @Inject constructor(
         viewModelScope.launch {
             favoritesRepository.addNewFavoriteMeal(meal)
             favoriteMealsChannel.send( FavoriteMealsEvents.NavigateToFavoritesMeals )
+            //after insert navigate to favorites fragment
         }
     }
 

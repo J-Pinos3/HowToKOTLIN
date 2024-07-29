@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_homeFragment_to_recipeFragment"
             app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_saveFragment"
+            app:destination="@id/saveFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -55,5 +58,8 @@
         <argument
             android:name="mealIdToSearch"
             app:argType="string" />
+        <action
+            android:id="@+id/action_recipeFragment_to_saveFragment"
+            app:destination="@id/saveFragment" />
     </fragment>
 </navigation>

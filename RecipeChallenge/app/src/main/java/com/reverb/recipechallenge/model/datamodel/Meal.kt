@@ -59,3 +59,11 @@ data class Meal(
     val strTags: String?,
     val strYoutube: String?
 )
+
+fun Meal.toMealEntity() =
+    MealEntity(
+        mealId = idMeal,
+        mealName = strMeal,
+        mealImage = strMealThumb,
+        isFavorite = false
+    )

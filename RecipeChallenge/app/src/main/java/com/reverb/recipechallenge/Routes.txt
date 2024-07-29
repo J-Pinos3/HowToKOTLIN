@@ -43,10 +43,18 @@ DONE:
     24) Use dagger hilt with dependency injection for the database
     25) Create database repository
     26) Create database viewmodel
+    27) Create a mapper from meal and mealResume to MealEntity
+    28) Add a the  favorites viewmodel in the HomeFragment and call the function to insert a meal
+    29) Add a the  favorites viewmodel in the SearchFragment and call the function to insert a meal
+    30) Add a the  favorites viewmodel in the RecipeFragment and call the function to insert a meal
+    31) Render the searched meal in RecipeFragment ui
 
     E1) Fix categories RV is not working in Search Fragment
 
+
+
 PROGRESS:
+
 
 
 
@@ -55,12 +63,14 @@ ERRORS - IMPROVEMENTS:
 
 
 _TODO :
-    23) Add the is favorite attribute to the model meal and mealResume classes
+
+    I DONT THING ITS NECESSARY 23) Add the is favorite attribute to the model meal and mealResume classes
 
 
-    27) Add a click listener for the save button of rv's and for the recipe fragment
 
 
+
+    32) Create a function to search a meal by Id so I check if i can add again a meal
     18) Move getMealById from MealViewModel to a new class RecipeViewModel
 
 
