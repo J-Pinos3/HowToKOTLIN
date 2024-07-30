@@ -19,6 +19,12 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+//        javaCompileOptions{
+//            annotationProcessorOptions {
+//                arguments["room.schemaLocation"] = "$projectDir/schemas".toString()
+//            }
+//        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -68,8 +74,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.49")
+    kapt("com.google.dagger:hilt-android-compiler:2.49")
 
     val room_version = "2.6.1"
     implementation("androidx.room:room-ktx:$room_version")

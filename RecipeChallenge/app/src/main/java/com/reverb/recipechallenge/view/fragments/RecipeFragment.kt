@@ -19,6 +19,7 @@ import com.reverb.recipechallenge.util.Resource
 import com.reverb.recipechallenge.util.mergeMealIngredientsMeasure
 import com.reverb.recipechallenge.viewmodel.FavoritesViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,6 +31,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class RecipeFragment: Fragment() {
 
     private lateinit var binding: RecipeFragmentLayoutBinding

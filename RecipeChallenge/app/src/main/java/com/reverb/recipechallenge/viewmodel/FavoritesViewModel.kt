@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reverb.recipechallenge.model.database.dao.MealDao
 import com.reverb.recipechallenge.model.datamodel.MealEntity
+import com.reverb.recipechallenge.model.datamodel.toMealEntity
 import com.reverb.recipechallenge.repository.DataBaseRepository
 import com.reverb.recipechallenge.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +28,9 @@ class FavoritesViewModel @Inject constructor(
     private val _allFavoriteMeals = MutableStateFlow<Resource<List<MealEntity>>>(Resource.Unspecified())
     val allFavoriteMeals = _allFavoriteMeals.asStateFlow()
 
+    private val _mealById = MutableStateFlow<Resource<MealEntity>>(Resource.Unspecified())
+    val mealById = _mealById.asStateFlow()
+
     // Get all meals
     fun favoriteMeals(){
         viewModelScope.launch {
@@ -37,6 +41,20 @@ class FavoritesViewModel @Inject constructor(
                 _allFavoriteMeals.emit( Resource.Success(favoriteMeals) )
             }else{
                 _allFavoriteMeals.emit( Resource.Error("There's no favorites meals") )
+            }
+        }
+    }
+
+    //get meal by id
+    fun favoriteMealByiD(idMeal: String){
+        viewModelScope.launch {
+            _mealById.emit(Resource.Loading())
+
+            val mealByIdResponse = favoritesRepository.getFavorietMealById(idMeal)
+            if( mealByIdResponse != null ){
+                _mealById.emit( Resource.Success(mealByIdResponse.toMealEntity()) )
+            }else{
+                _mealById.emit( Resource.Error("There's no favorite meal with that Id") )
             }
         }
     }

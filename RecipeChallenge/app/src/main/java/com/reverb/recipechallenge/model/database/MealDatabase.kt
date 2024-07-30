@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.reverb.recipechallenge.model.database.dao.MealDao
 import com.reverb.recipechallenge.model.database.entities.MealEntityResponse
 
-@Database(entities = [MealEntityResponse::class], version = 1)
+@Database(entities = [MealEntityResponse::class], version = 1, exportSchema = false)
 abstract class MealDatabase: RoomDatabase() {
     abstract fun mealDao(): MealDao
 }

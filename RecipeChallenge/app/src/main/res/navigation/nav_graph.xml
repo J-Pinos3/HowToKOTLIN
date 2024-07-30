@@ -40,6 +40,9 @@
         android:label="SavedFragment"
         tools:layout="@layout/saved_fragment_layout">
 
+        <action
+            android:id="@+id/action_saveFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/introductionFragment"

@@ -19,4 +19,8 @@ interface MealDao {
     @Delete
     suspend fun deleteFromFavorites(mealFavoriteEntity: MealEntityResponse)
 
+
+    @Query("SELECT * FROM favorite_meal WHERE mealId LIKE :idMeal LIMIT 1")
+    suspend fun getFavoriteMealById(idMeal: String): MealEntityResponse?
+
 }

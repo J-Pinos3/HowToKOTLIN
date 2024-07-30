@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RecipeChallenge</string>
     <string name="discover_the_best_recipes">Discover the best\nrecipes!</string>
+    <string name="recipes_you_have_saved">Recipes you have\nsaved</string>
 </resources>

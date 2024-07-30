@@ -27,6 +27,7 @@ import com.reverb.recipechallenge.viewmodel.CategoryViewModel
 import com.reverb.recipechallenge.viewmodel.FavoritesViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
 import com.reverb.recipechallenge.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collect
@@ -35,6 +36,7 @@ import kotlinx.coroutines.launch
 import java.util.Timer
 import java.util.TimerTask
 
+@AndroidEntryPoint
 class SearchFragment: Fragment() {
     private lateinit var binding: SearchFragmentLayoutBinding
 
