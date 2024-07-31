@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/nsvHome"
     android:background="@color/white"
+    android:paddingBottom="80dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
         
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,8 +120,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginTop="30dp" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -133,7 +133,7 @@
             app:layout_constraintTop_toBottomOf="@id/rvFoodCategories"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/meal_item_rv"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

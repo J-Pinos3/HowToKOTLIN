@@ -1,6 +1,7 @@
 package com.reverb.recipechallenge.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.reverb.recipechallenge.R
 import com.reverb.recipechallenge.databinding.HomeFragmentLayoutBinding
 import com.reverb.recipechallenge.model.datamodel.Meal
+import com.reverb.recipechallenge.model.datamodel.MealEntity
 import com.reverb.recipechallenge.model.datamodel.MealList
 import com.reverb.recipechallenge.model.datamodel.MealResume
 import com.reverb.recipechallenge.model.datamodel.toMealEntity
@@ -23,8 +25,11 @@ import com.reverb.recipechallenge.viewmodel.CategoryViewModel
 import com.reverb.recipechallenge.viewmodel.FavoritesViewModel
 import com.reverb.recipechallenge.viewmodel.MealViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment: Fragment() {
@@ -33,6 +38,7 @@ class HomeFragment: Fragment() {
     private val mealViewModel by viewModels<MealViewModel> ()
     private val categoryViewModel by viewModels<CategoryViewModel> ()
     private val favoritesViewModel by viewModels<FavoritesViewModel>()
+    private var mealFromDB: String? = null
 
     private val mealsViewedAdapter by lazy {
         MealsViewedAdapter(
@@ -45,7 +51,19 @@ class HomeFragment: Fragment() {
     private val foodsByCategoryAdapter by lazy {
         FoodsByCategoryAdapter(
             onSelectedItem = { mealresume -> onItemResumeMealSelected(mealresume) },
-            onSaveMeal = { mealResume ->  onSaveMealByCategory(mealResume) }
+            onSaveMeal = { mealResume ->
+                lifecycleScope.launch {
+                    getSavedMealById(mealResume.idMeal)
+                }
+                if( mealFromDB !=  mealResume.idMeal){
+                    println( "${mealFromDB} <--->  ${mealResume.idMeal}" )
+                    onSaveMealByCategory(mealResume)
+                    mealFromDB = mealResume.idMeal
+                }else{
+                    Log.i("MEAL IN DB", "That meal already exists in db")
+                }
+
+            }
         )
     }
 
@@ -132,8 +150,32 @@ class HomeFragment: Fragment() {
             }
         }
 
+        lifecycleScope.launchWhenStarted {
+            favoritesViewModel.mealById.collectLatest {
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        //that meal is already in db
+                        mealFromDB = it.data?.mealId
+                    }
+                    is Resource.Error -> {
+                        println("Saved meal by id: " +it.message.toString())
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
 
     }//ON VIEW CREATED
+
+    suspend fun getSavedMealById(idMeal: String){
+        coroutineScope {
+            val deferred1 = async { favoritesViewModel.favoriteMealByiD(idMeal) }
+            deferred1.await()
+        }
+    }
+
 
     //functions to save meals to favorites
     private fun onSaveMealByCategory(mealResume: MealResume){

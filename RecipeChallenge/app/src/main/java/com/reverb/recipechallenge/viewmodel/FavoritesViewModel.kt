@@ -54,7 +54,7 @@ class FavoritesViewModel @Inject constructor(
             if( mealByIdResponse != null ){
                 _mealById.emit( Resource.Success(mealByIdResponse.toMealEntity()) )
             }else{
-                _mealById.emit( Resource.Error("There's no favorite meal with that Id") )
+                _mealById.emit( Resource.Error("RESPONSE: There's no favorite meal with that Id $idMeal \n") )
             }
         }
     }
@@ -68,10 +68,10 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    fun deleteFavoriteMeal(meal: MealEntity){
+    fun deleteFavoriteMeal(idMeal: String){
         viewModelScope.launch {
-            favoritesRepository.deleteFavoriteMeal(meal)
-            favoriteMealsChannel.send( FavoriteMealsEvents.ShowUndoSnackBar("Favorite Meal Deleted", meal) )
+            favoritesRepository.deleteFavoriteMeal(idMeal)
+            favoriteMealsChannel.send( FavoriteMealsEvents.ShowUndoSnackBar("Favorite Meal Deleted with id $idMeal", MealEntity()) )
         }
     }
 

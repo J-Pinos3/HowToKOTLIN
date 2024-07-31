@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.reverb.recipechallenge.databinding.SavedFragmentLayoutBinding
+import com.reverb.recipechallenge.model.datamodel.Meal
 import com.reverb.recipechallenge.model.datamodel.MealEntity
 import com.reverb.recipechallenge.util.Resource
 import com.reverb.recipechallenge.view.adapter.FavoritesAdapter
@@ -33,7 +34,7 @@ class SavedFragment: Fragment() {
     private val favoritesAdapter by lazy{
         FavoritesAdapter(
             onItemSelected = {  mealEntity -> onItemSavedSelected(mealEntity) },
-            onItemDeleted = { mealEntity -> onDeleteItem(mealEntity) }
+            onItemDeleted = { mealId, position -> onDeleteItem(mealId, position) }
         )
     }
 
@@ -103,8 +104,13 @@ class SavedFragment: Fragment() {
         findNavController().navigate(actions)
     }
 
-    private fun onDeleteItem(mealEntity: MealEntity){
-        favoritesViewModel.deleteFavoriteMeal(mealEntity)
+    private fun onDeleteItem(mealId:String, itemPosition: Int){
+        //DELETE FROM THE RV THAT ITEM
+        val updatedList: MutableList<MealEntity> = favoritesAdapter.differList.currentList.toMutableList()
+        updatedList.removeAt(itemPosition)
+
+        favoritesAdapter.differList.submitList(updatedList)
+        favoritesViewModel.deleteFavoriteMeal(mealId)
     }
 
     private fun initSavedRv() {

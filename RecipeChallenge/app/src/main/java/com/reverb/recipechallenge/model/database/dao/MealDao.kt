@@ -16,11 +16,11 @@ interface MealDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoriteMeal( mealFavoriteEntity: MealEntityResponse)
 
-    @Delete
-    suspend fun deleteFromFavorites(mealFavoriteEntity: MealEntityResponse)
+    @Query("DELETE FROM favorite_meal WHERE mealId LIKE :idMeal")
+    suspend fun deleteFromFavorites(idMeal: String)
 
 
-    @Query("SELECT * FROM favorite_meal WHERE mealId LIKE :idMeal LIMIT 1")
+    @Query("SELECT * FROM favorite_meal WHERE mealId LIKE :idMeal")
     suspend fun getFavoriteMealById(idMeal: String): MealEntityResponse?
 
 }

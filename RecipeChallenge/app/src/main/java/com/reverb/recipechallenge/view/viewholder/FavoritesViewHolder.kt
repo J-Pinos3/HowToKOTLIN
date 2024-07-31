@@ -10,7 +10,7 @@ class FavoritesViewHolder(private val binding: SavedItemRvBinding): RecyclerView
     fun render(
         mealEntity: MealEntity,
         onMealSelected: (MealEntity) -> Unit,
-        onItemDeleted: (MealEntity) -> Unit
+        onItemDeleted: (String, Int) -> Unit
     ){
         binding.apply {
             Glide.with(ivMealImage.context).load(mealEntity.mealImage).into(ivMealImage)
@@ -19,12 +19,11 @@ class FavoritesViewHolder(private val binding: SavedItemRvBinding): RecyclerView
             tvMealName.text = mealEntity.mealName
 
             tvDeleteMeal.setOnClickListener {
-                onItemDeleted(mealEntity)
+                onItemDeleted(mealEntity.mealId, adapterPosition)
             }
         }
 
         itemView.setOnClickListener {
-            //todo add goto recipe fragment
             onMealSelected(mealEntity)
         }
     }

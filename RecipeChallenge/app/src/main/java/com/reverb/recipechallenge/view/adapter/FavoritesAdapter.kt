@@ -11,7 +11,7 @@ import com.reverb.recipechallenge.view.viewholder.FavoritesViewHolder
 
 class FavoritesAdapter(
     private val onItemSelected:(MealEntity) -> Unit,
-    private val onItemDeleted:(MealEntity) -> Unit
+    private val onItemDeleted:(String, Int) -> Unit
 ): RecyclerView.Adapter<FavoritesViewHolder>()
 {
 

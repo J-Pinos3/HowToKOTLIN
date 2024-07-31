@@ -55,7 +55,7 @@ DONE:
     35) Add the navigation from saved fragment to Recipe Fragment
     36) Implement the function to get all meals from db in Saved Fragment
 
-    TODO 37) TESTING
+    TODO 37) TESTING in PROGRESS
      
     38) Add the functionality to filter the saved meals by name
     39) Within saved fragment call a function to delete a meal, and update the ui
@@ -64,24 +64,33 @@ DONE:
     41) Improve the ui for the rv of meal items
 
 
-    E1) Fix categories RV is not working in Search Fragment
 
+    I3) Improve the size of the items of meals rv that are in the bottom of the Home Fragment
+
+    E1) Fix categories RV is not working in Search Fragment
+    E2) The validation of adding a meal if not exists is just working once
+        It already works
+    E3) Delete function from favorites viewmodel - mealdao is not working
+        Now it uses a query and deletes by IdMeal
 
 
 PROGRESS:
     37) Test of adding meals and watch them in the saved fragment
         37.1) For the moment, meals are inserted in data base correctly and also shown in the saved fragment
 
-    42) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again
-
-
+    42) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the HomeFragment
+    43) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the SearchFragment
+    43) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the RecipeFragment
 
 ERRORS - IMPROVEMENTS:
 
 
+
+
 _TODO :
 
-    43) Check navigation it's a bit strange
+
+    44) Check navigation it's a bit strange
     18) Move getMealById from MealViewModel to a new class RecipeViewModel
 
 

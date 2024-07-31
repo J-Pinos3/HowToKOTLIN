@@ -23,9 +23,8 @@ class DataBaseRepository @Inject constructor(
         mealDao.insertFavoriteMeal(mealEntityResponse)
     }
 
-    suspend fun deleteFavoriteMeal(mealEntity: MealEntity){
-        val mealEntityResponse = mealEntity.toMealResponse()
-        mealDao.deleteFromFavorites(mealEntityResponse)
+    suspend fun deleteFavoriteMeal(idMeal: String){
+        mealDao.deleteFromFavorites(idMeal)
     }
 
     suspend fun getFavorietMealById(idMeal: String): MealEntityResponse?{
