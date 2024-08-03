@@ -3,6 +3,7 @@
 
 ### The technical features of this app are:
 - MVVM Architecture
+- Dependency Injection With Dagger Hilt
 - Result Pattern
 - Room Database
 - Retrofit
