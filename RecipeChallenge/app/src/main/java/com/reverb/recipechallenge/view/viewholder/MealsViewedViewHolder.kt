@@ -1,5 +1,6 @@
 package com.reverb.recipechallenge.view.viewholder
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -16,6 +17,7 @@ class MealsViewedViewHolder(private val binding: MealItemRvBinding): RecyclerVie
             tvMealTimePrep.text = meal.idMeal.substring(0,2) + " min"
             tvMealName.text = meal.strMeal
 
+            tvSaveMeal.visibility = View.INVISIBLE
             tvSaveMeal.setOnClickListener {
                 onSaveMeal(meal)
             }

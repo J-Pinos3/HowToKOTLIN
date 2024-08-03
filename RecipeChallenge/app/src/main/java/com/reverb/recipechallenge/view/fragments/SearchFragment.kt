@@ -43,13 +43,36 @@ class SearchFragment: Fragment() {
 
     private val searchViewModel by viewModels<SearchViewModel>()
     private val favoritesViewModel by viewModels<FavoritesViewModel>()
-
+    private var mealFromDB: String? = null
     private val searchMealsAdapter by lazy {
         SearchMealsAdapter(
             onItemSelected = {mealItem -> onItemMealSelected(mealItem) },
-            onSaveMeal = { mealItem -> onSaveSearchedMeal(mealItem) }
+            onSaveMeal = { mealItem ->
+                lifecycleScope.launch {
+                    if (mealItem is Meal){  getSavedMealById(mealItem.idMeal)  }
+                    if(mealItem is MealResume){  getSavedMealById(mealItem.idMeal)  }
+                }
+
+                if (mealItem is Meal){
+                    if(mealFromDB != mealItem.idMeal){
+                        onSaveSearchedMeal(mealItem)
+                        mealFromDB = mealItem.idMeal
+                    }else{
+                        Log.i("MEALITEM IN DB", "That meal already exists in db")
+                    }
+                }else if(mealItem is MealResume){
+                    if(mealFromDB != mealItem.idMeal){
+                        onSaveSearchedMealResume(mealItem)
+                        mealFromDB = mealItem.idMeal
+                    }else{
+                        Log.i("MEALITEM RESUME IN DB", "That meal already exists in db")
+                    }
+                }
+
+            }
         )
-    }
+    }//SEARCH MEALS ADAPTER
+
     private val searchCategoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
 
     private var searchTextWatcher = object: TextWatcher{
@@ -157,6 +180,23 @@ class SearchFragment: Fragment() {
             }
         }
 
+        //search the meal in db before insert
+        lifecycleScope.launchWhenStarted {
+            favoritesViewModel.mealById.collectLatest {
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        //that meal is already in db
+                        mealFromDB = it.data?.mealId
+                    }
+                    is Resource.Error -> {
+                        println("Saved meal by id: " +it.message.toString())
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
     }
 
 
@@ -167,16 +207,20 @@ class SearchFragment: Fragment() {
         }
     }
 
-    private fun onSaveSearchedMeal(mealItem: Any){
-        if (mealItem is Meal){
-            favoritesViewModel.insertfavoriteMeal( mealItem.toMealEntity() )
-        }
-
-        if(mealItem is MealResume){
-            favoritesViewModel.insertfavoriteMeal( mealItem.toMealEntity() )
+    suspend fun getSavedMealById(idMeal: String){
+        coroutineScope {
+            val deferred2 = async { favoritesViewModel.favoriteMealByiD(idMeal) }
+            deferred2.await()
         }
     }
 
+    private fun onSaveSearchedMeal(mealItem: Meal){
+        favoritesViewModel.insertfavoriteMeal( mealItem.toMealEntity() )
+    }
+
+    private fun onSaveSearchedMealResume(mealItem: MealResume){
+        favoritesViewModel.insertfavoriteMeal( mealItem.toMealEntity() )
+    }
 
     private fun onItemMealSelected(mealItem: Any){
         if (mealItem is MealResume){

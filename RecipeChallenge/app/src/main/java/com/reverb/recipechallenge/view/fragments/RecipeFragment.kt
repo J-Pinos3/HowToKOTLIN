@@ -42,6 +42,8 @@ class RecipeFragment: Fragment() {
     private val args by navArgs<RecipeFragmentArgs>()
     private lateinit var mealGotten: Meal
 
+    private var mealFromDB: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +73,7 @@ class RecipeFragment: Fragment() {
                 when(it){
                     is Resource.Loading -> {}
                     is Resource.Success -> {
-                        println("Meal Object By id: ${it.data?.strMeal}  ${it.data?.strArea}")
+                        println("Since Recipe Fragment Meal Object By id: ${it.data?.strMeal}  ${it.data?.strArea}")
                         mealGotten = it.data!!
                         showMealInUi(it.data)
                     }
@@ -84,7 +86,45 @@ class RecipeFragment: Fragment() {
 
         //save meal into favorites
         binding.mtvFoodRecipeSaveRecipe.setOnClickListener {
-            saveMealToDb(mealGotten)
+            /*
+            lifecycleScope.launch {
+                getSavedMealByIdFromDB(mealGotten.idMeal)
+            }
+
+            if( mealFromDB != mealGotten.idMeal ){
+                println( "Since Recipe ${mealFromDB} <--->  ${mealGotten.idMeal}" )
+                saveMealToDb(mealGotten)
+                mealFromDB = mealGotten.idMeal
+            }else{
+                Log.i("MEALVRECIPE IN DB", "That meal already exists in db")
+            }
+            */
+             lifecycleScope.launch {
+                 favoritesViewModel.favoriteMealByiD(mealGotten.idMeal)
+                 favoritesViewModel.mealById.collectLatest{
+                     when(it){
+                         is Resource.Loading -> {}
+                         is Resource.Success -> {
+                             mealFromDB = it.data?.mealId
+                             if(mealFromDB != mealGotten.idMeal){
+                                 println("Since Recipe ${mealFromDB} <--->  ${mealGotten.idMeal}")
+                                 saveMealToDb(mealGotten)
+                                 mealFromDB = mealGotten.idMeal
+                             }else{
+                                 Log.i("MEALVRECIPE IN DB", "That meal already exists in db")
+                             }
+                         }
+                         is Resource.Error -> {
+                             Log.e("RecipeFragment", "Error fetching meal from DB: ${it.message}")
+                             //there is no that meal by id in Db, so insert it
+                             saveMealToDb(mealGotten)
+                             mealFromDB = mealGotten.idMeal
+                         }
+                         else -> Unit
+                     }
+                 }
+             }
+
         }
 
         /**
@@ -98,11 +138,40 @@ class RecipeFragment: Fragment() {
                 }
             }
         }
+
+        /*
+        lifecycleScope.launchWhenStarted {
+            favoritesViewModel.mealById.collectLatest {
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        //that meal is already in db
+                        println( "Since Recipe Got meal from DB? IN RECIPE  ${it.data?.mealName }**${it.data?.mealId }" )
+                        mealFromDB = it.data?.mealId
+                    }
+                    is Resource.Error -> {
+                        println("Saved meal by id: " +it.message.toString())
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+         */
     }
 
     private fun saveMealToDb(meal: Meal){
         favoritesViewModel.insertfavoriteMeal(meal.toMealEntity())
     }
+
+
+    suspend fun getSavedMealByIdFromDB(idMeal: String){
+        coroutineScope {
+            val deferred3 = async { favoritesViewModel.favoriteMealByiD(idMeal) }
+            deferred3.await()
+        }
+    }
+
 
     private fun showMealInUi(meal: Meal){
         binding.apply {

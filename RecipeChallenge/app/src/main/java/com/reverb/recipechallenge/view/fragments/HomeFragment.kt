@@ -43,7 +43,7 @@ class HomeFragment: Fragment() {
     private val mealsViewedAdapter by lazy {
         MealsViewedAdapter(
             onItemSelected = { meal ->  onItemMealSelected(meal)},
-            onSaveMeal = {  meal->  onSaveViewedMeal(meal)  }
+            onSaveMeal = {  meal->  onSaveViewedMeal(meal)   }
         )
     }
     private val categoriesAdapter by lazy { CategoriesAdapter(){ position -> onCategorySelected(position) } }
@@ -56,7 +56,7 @@ class HomeFragment: Fragment() {
                     getSavedMealById(mealResume.idMeal)
                 }
                 if( mealFromDB !=  mealResume.idMeal){
-                    println( "${mealFromDB} <--->  ${mealResume.idMeal}" )
+                    println( "Since Home ${mealFromDB} <--->  ${mealResume.idMeal}" )
                     onSaveMealByCategory(mealResume)
                     mealFromDB = mealResume.idMeal
                 }else{
@@ -183,7 +183,8 @@ class HomeFragment: Fragment() {
     }
 
     private fun onSaveViewedMeal(meal: Meal){
-        favoritesViewModel.insertfavoriteMeal( meal.toMealEntity() )
+        //dont save this viewed
+        //favoritesViewModel.insertfavoriteMeal( meal.toMealEntity() )
     }
 
 

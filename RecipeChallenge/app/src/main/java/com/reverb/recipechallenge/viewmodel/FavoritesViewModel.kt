@@ -54,7 +54,7 @@ class FavoritesViewModel @Inject constructor(
             if( mealByIdResponse != null ){
                 _mealById.emit( Resource.Success(mealByIdResponse.toMealEntity()) )
             }else{
-                _mealById.emit( Resource.Error("RESPONSE: There's no favorite meal with that Id $idMeal \n") )
+                _mealById.emit( Resource.Error("RESPONSE: There's no favorite meal with that Id $idMeal $mealByIdResponse \n") )
             }
         }
     }

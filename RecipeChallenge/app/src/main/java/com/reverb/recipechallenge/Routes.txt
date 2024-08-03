@@ -62,7 +62,10 @@ DONE:
     40) Create a function in db dao to search a meal by Id so I can check if I can add again a meal
             Explanation: this function will search a meal by mealId, if already exists, dont add that meal
     41) Improve the ui for the rv of meal items
-
+    42) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the HomeFragment
+        in the meals viewed and in the foods my categories in the bottom
+    43) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the SearchFragment
+    44) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the RecipeFragment
 
 
     I3) Improve the size of the items of meals rv that are in the bottom of the Home Fragment
@@ -78,9 +81,9 @@ PROGRESS:
     37) Test of adding meals and watch them in the saved fragment
         37.1) For the moment, meals are inserted in data base correctly and also shown in the saved fragment
 
-    42) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the HomeFragment
-    43) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the SearchFragment
-    43) Use the find saved meal by id, to check if the meal, already exists, then dont add that meal again in the RecipeFragment
+
+
+
 
 ERRORS - IMPROVEMENTS:
 
