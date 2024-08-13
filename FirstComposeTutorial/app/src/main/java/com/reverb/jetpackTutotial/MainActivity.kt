@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -65,6 +67,7 @@ class MainActivity : ComponentActivity() {
 
                     ComposeQuadrantApp()
                     */
+                    ContactScreen()
 
                 }
             }
@@ -75,10 +78,79 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+private fun ContactScreen(){
+    Column(
+
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .background(color = Color(0xFF86F382))
+            .fillMaxSize()
+    ){
+        Row(modifier = Modifier.padding(top = 20.dp)){
+            BasicInfoCard()
+        }
+
+        Row(modifier = Modifier.padding(bottom = 20.dp)){
+            ContactCard()
+        }
+    }
+}
+
+@Composable
 private fun ContactCard(){
+    val phoneImage = painterResource(id = R.drawable.ic_phone)
+    val shareImage = painterResource(id = R.drawable.ic_share)
+    val mailImage = painterResource(id = R.drawable.ic_mail)
+    val icColor = Color(0xFF088003)
     Column{
-        Row {
-            Image(painter = , contentDescription = )
+        Row (
+            horizontalArrangement = Arrangement.Center,
+            modifier =  Modifier.padding(vertical = 5.dp)
+        ){
+            Icon(
+                painter = phoneImage ,
+                contentDescription = null,
+                tint = icColor
+            )
+
+
+            Text(
+                text = "(+593) 0962151117",
+                modifier = Modifier.padding(start = 15.dp)
+            )
+        }
+
+        Row (
+            horizontalArrangement = Arrangement.Center,
+            modifier =  Modifier.padding(vertical = 5.dp)
+        ){
+            Icon(
+                painter = shareImage ,
+                contentDescription = null,
+                tint = icColor
+            )
+
+            Text(
+                text = "jose.pinos.guitar",
+                modifier = Modifier.padding(start = 15.dp)
+            )
+        }
+
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier =  Modifier.padding(vertical = 5.dp)
+        ){
+            Icon(
+                painter = mailImage ,
+                contentDescription = null,
+                tint = icColor
+            )
+
+            Text(
+                text = "Reverb1@outlook.es",
+                modifier = Modifier.padding(start = 15.dp)
+            )
         }
     }
 }
@@ -93,7 +165,7 @@ private fun BasicInfoCard(){
         Image(
             painter = image,
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
         
         Text(
@@ -101,12 +173,12 @@ private fun BasicInfoCard(){
             textAlign = TextAlign.Center,
             fontSize = 24.sp,
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
         )
         
         Text(
             text = "Junior Android Developer",
-            style = TextStyle(color = Color.Green)
+            style = TextStyle(color = Color.Black)
         )
     }
 }
@@ -429,6 +501,7 @@ fun BirthdayCardPreview(){
         //JetPackDeclaration()
         //TaskScreen()
         //DividedScreen()
+        ContactScreen()
     }
 }
 
