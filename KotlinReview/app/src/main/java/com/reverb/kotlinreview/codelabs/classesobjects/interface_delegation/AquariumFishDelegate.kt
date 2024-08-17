@@ -47,4 +47,3 @@ class Plecostomus(fishColor:FishColorDelegation = GoldColor ): FishColorDelegati
     }
 }
 */
- */
