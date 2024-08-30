@@ -1,6 +1,6 @@
 Video:
-https://www.youtube.com/watch?v=G4YopUFICrI&list=PLrn69hTK5FBwu7VmWBg76v23atiMqz_pY&index=10
-5️⃣ CONSEJOS para estructurar el código en Jetpack Compose #9
+https://www.youtube.com/watch?v=nwdc1ct06TI&list=PLrn69hTK5FBwu7VmWBg76v23atiMqz_pY&index=11
+Navegación en Jetpack COMPOSE 🔵 con Navigation Compose #10
 
 Time:
- 0:00
+ 13:45

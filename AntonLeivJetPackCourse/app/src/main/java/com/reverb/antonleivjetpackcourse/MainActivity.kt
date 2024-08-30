@@ -21,7 +21,12 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color.Companion
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.unit.dp
-import com.reverb.antonleivjetpackcourse.ui.MyMoviesApp
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.reverb.antonleivjetpackcourse.ui.screens.detail.DetailScreen
 import com.reverb.antonleivjetpackcourse.ui.screens.main.MainScreen
 
 class MainActivity : ComponentActivity() {
@@ -29,22 +34,43 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyMoviesApp {
+            /*
+                Greeting(name = "Jhonny")
+                MediaList()
 
-                /*
-                    Greeting(name = "Jhonny")
-                    MediaList()
+                var text by rememberSaveable {  mutableStateOf("")  }
+                val (value, onValueChange) = rememberSaveable {  mutableStateOf("")  }
+                StateSample(
+                    text = text,//value
+                    onValueChange = {  text = it  }//onValueChange
+                )
+            */
 
-                    var text by rememberSaveable {  mutableStateOf("")  }
-                    val (value, onValueChange) = rememberSaveable {  mutableStateOf("")  }
-                    StateSample(
-                        text = text,//value
-                        onValueChange = {  text = it  }//onValueChange
-                    )
-                */
+            val navController = rememberNavController()
 
-                MainScreen()
+            //defines nav graph
+            NavHost(
+                navController = navController,
+                startDestination = "main",
+            ){
+                composable("main"){
+                    MainScreen(navController)
+                }
+
+                composable(
+                    route="detail/{mediaId}",
+                    arguments = listOf(navArgument("mediaId"){type = NavType.IntType})
+                ){
+                    backStackEntry ->
+                    val id = backStackEntry.arguments?.getInt("mediaId")
+                    requireNotNull(id) { "No puede ser nulo porque el detalle siempre tiene Id y" +
+                            "la ruta no permite parámetros opcionales" }
+                    DetailScreen(id)
+                }
             }
+
+            //MainScreen()
+
         }
     }
 

@@ -1,6 +1,7 @@
 package com.reverb.antonleivjetpackcourse.ui.screens.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,16 +25,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.reverb.antonleivjetpackcourse.R
 import com.reverb.antonleivjetpackcourse.model.MediaItem
 import com.reverb.antonleivjetpackcourse.model.getMedia
+import com.reverb.antonleivjetpackcourse.ui.MyMoviesApp
 
 
-@Preview
 @Composable
-fun MediaList(modifier: Modifier = Modifier){
+fun MediaList(navController: NavHostController  ,modifier: Modifier = Modifier){
 
 
     LazyVerticalGrid(
@@ -50,7 +52,11 @@ fun MediaList(modifier: Modifier = Modifier){
         so use function below*/
         items(getMedia().size ){ index ->
             //MediaListItem(item = getMedia()[index], Modifier.padding(2.dp))
-            MediaListItem(item = getMedia()[index], Modifier.padding(dimensionResource(R.dimen.padding_xsmall)))
+            MediaListItem(
+                item = getMedia()[index],
+                navController = navController,
+                modifier = Modifier.padding(dimensionResource(R.dimen.padding_xsmall))
+            )
         }
     }
 }
@@ -58,9 +64,10 @@ fun MediaList(modifier: Modifier = Modifier){
 
 //@Preview(   showBackground = true  )
 @Composable
-fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
+fun MediaListItem(navController: NavHostController,item: MediaItem, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
+            .clickable { navController.navigate("detail/${item.id}") }
         //modifier = Modifier.width(200.dp) for better view in lazyrow and below's fillmaxwidt has no efect
     ){
         Box(
@@ -131,5 +138,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun MediaListPreview(){
-    MediaList()
+    MyMoviesApp{
+
+    }
 }
