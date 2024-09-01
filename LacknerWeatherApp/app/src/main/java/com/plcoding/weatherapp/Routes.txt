@@ -1,0 +1,17 @@
+clean architecture
+↓
+Presentation     ←→     Domain       ←→      Data
+
+
+dto = data transfer objects
+
+Clean
+we create mapper class or functions
+so we separate dto objects
+from the objects of the domain layer
+
+
+https://www.youtube.com/watch?v=eAbKK7JNxCE
+
+Minute
+55:10
