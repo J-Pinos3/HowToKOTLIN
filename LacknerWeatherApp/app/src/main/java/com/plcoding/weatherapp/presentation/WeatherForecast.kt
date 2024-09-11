@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.plcoding.weatherapp.domain.weather.WeatherData
@@ -23,7 +24,7 @@ fun WeatherForecast(
         //                                  0 for today's data
     state.weatherInfo?.weatherDataPerDay?.get(0).let {data ->
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ){
@@ -37,7 +38,12 @@ fun WeatherForecast(
             LazyRow(content = {
                 if(data != null)
                 items(data){weatherData ->
-
+                    HourlyWeatherDisplay(
+                        weatherData = weatherData,
+                        modifier = Modifier
+                            .height(100.dp)
+                            .padding(horizontal = 15.dp)
+                    )
                 }
             })
         }

@@ -21,7 +21,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,30 +38,47 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.currentRecomposeScope
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
 import com.example.tiptime.ui.theme.TipTimeTheme
 import java.text.NumberFormat
 
@@ -68,12 +91,133 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    TipTimeLayout()
+                    //TipTimeLayout()
+                    ArtSpaceLayout()
                 }
             }
         }
     }
 }
+
+@Composable
+fun ArtSpaceLayout(){
+    val mediaState by remember {  mutableStateOf(getMedia())  }
+
+    var currentIndex by remember { mutableIntStateOf(0) }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ){
+        Image(
+            modifier = Modifier
+                //.wrapContentSize()
+                .size(205.dp, 305.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .shadow(2.dp, RoundedCornerShape(12.dp)),
+            painter = rememberImagePainter(
+                data = mediaState[currentIndex].image,
+                builder = {
+                    placeholder(R.drawable.amanecer)
+                }
+            ),
+            contentScale = ContentScale.Fit,
+            contentDescription = null
+        )
+
+        Column(
+            modifier = Modifier
+                .padding(vertical = 30.dp, horizontal = 30.dp)
+                .background(Color(0xFFCECFD1)),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(
+                text = mediaState[currentIndex].title,
+                fontWeight = FontWeight.Bold,
+                fontSize = 30.sp
+            )
+
+            Text(
+                //text = "Artwork Artist (year)",
+                text = "${mediaState[currentIndex].artist} (${mediaState[currentIndex].year})",
+                fontSize = 18.sp
+            )
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp)
+                    .background(Color.White),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.Top
+            ){
+                Box(
+                    modifier = Modifier.padding(top = 10.dp),
+                    contentAlignment = Alignment.Center){
+                    Text(
+                        text = "Previous",
+                        style = TextStyle(
+                            color = Color.White
+                        ),
+                        modifier = Modifier
+                            .clip(
+                                shape = RoundedCornerShape(100.dp)
+                            )
+                            .background(Color(0xFF144794))
+                            .padding(vertical = 5.dp, horizontal = 20.dp)
+                            .clickable {
+                                if ( currentIndex >= 0 && currentIndex <= 9)
+                                    currentIndex--
+
+                                if(currentIndex < 0)
+                                    currentIndex = 9
+                            }
+
+                    )
+                }
+
+                Box(
+                    modifier = Modifier.padding(top = 10.dp),
+                    contentAlignment = Alignment.Center
+                ){
+                    Text(
+                        text = "Next",
+                        style = TextStyle(
+                            color = Color.White
+                        ),
+                        modifier = Modifier
+                            .clip(
+                                shape = RoundedCornerShape(100.dp)
+                            )
+                            .background(Color(0xFF144794))
+                            .padding(vertical = 5.dp, horizontal = 30.dp)
+                            .clickable {
+                                if ( currentIndex >= 0 && currentIndex <= 9)
+                                    currentIndex++
+
+                                if (currentIndex >= 10)
+                                    currentIndex = 0
+                            }
+
+                    )
+                }
+            }
+        }
+
+
+    }
+}
+
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ArtSpaceLayoutPreview(){
+    TipTimeTheme {
+        ArtSpaceLayout()
+    }
+}
+
+
+
 
 @Composable
 fun TipTimeLayout() {
@@ -103,7 +247,7 @@ fun TipTimeLayout() {
                 .align(alignment = Alignment.Start)
         )
         EditNumberField(
-            label = R.string.app_name,
+            label = R.string.bill_amount,
             leadingIcon = R.drawable.money,
             keyboardOptions = KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Number,
@@ -203,7 +347,8 @@ fun RoundTheTipRow(
  * according to the local currency.
  * Example would be "$10.00".
  */
-private fun calculateTip(
+@VisibleForTesting
+internal fun calculateTip(
     amount: Double,
     tipPercent: Double = 15.0,
     roundUp: Boolean
@@ -216,7 +361,7 @@ private fun calculateTip(
     return NumberFormat.getCurrencyInstance().format(tip)
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+//@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun TipTimeLayoutPreview() {
     TipTimeTheme {
