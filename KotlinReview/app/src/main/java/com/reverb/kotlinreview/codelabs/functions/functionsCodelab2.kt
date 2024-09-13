@@ -17,6 +17,7 @@ fun main(){
     println(updateDirty(10) { it: Int -> it + 1 })
 
     println( updateDirty(15, ::increaseDirty) )
+    //println( updateDirty(15, ::waterFilter) ) cannot put a reference to a variable
 }
 
 private fun updateDirty(dirty: Int = 30, operation: (Int) -> Int): Int{

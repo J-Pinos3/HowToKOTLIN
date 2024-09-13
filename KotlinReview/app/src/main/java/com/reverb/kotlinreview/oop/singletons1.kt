@@ -17,6 +17,7 @@ fun moveIt(runnable: Runnable){
 
 
 fun main(){
+    Sun.run()
     println("RADIUS: " + Sun.radiusKM)
     moveIt(Sun)
 }
