@@ -1,0 +1,18 @@
+TODO:
+
+
+
+ERRORS:
+
+
+
+PROGRESS:
+
+    5) Create the GithubRepositoryImpl implementation class
+
+
+COMPLETED:
+    1) Create the repo, user ad user detail data classes in package data.model
+    2) Create the Endpoints object to store endpoints
+    3) Create Interface for the endpoints aka. webservice
+    4) Create interface for the Repository layer of clean architecture (GithubRepository)

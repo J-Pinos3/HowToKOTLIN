@@ -1,0 +1,10 @@
+            Common Package
+
+Intent: allows to launch an activity in another app with an action description
+https://developer.android.com/guide/components/intents-common?hl=es-419
+
+Intent.ACTION_VIEW: to show details a known contact and specify contact with an URI
+https://developer.android.com/guide/components/intents-common?hl=es-419
+Intent.ACTION_VIEW: display data to the user
+https://developer.android.com/reference/android/content/Intent#ACTION_VIEW
+
