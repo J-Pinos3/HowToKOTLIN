@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.application")
     id("kotlin-kapt")
@@ -62,6 +63,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
+
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
@@ -69,6 +72,8 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.7.0")
 
     implementation ("io.insert-koin:koin-core:3.0.1")
+    implementation("io.insert-koin:koin-android:3.0.1")
+    implementation("io.insert-koin:koin-androidx-compose:3.0.1")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.google.code.gson:gson:2.10.1")

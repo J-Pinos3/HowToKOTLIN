@@ -8,3 +8,13 @@ https://developer.android.com/guide/components/intents-common?hl=es-419
 Intent.ACTION_VIEW: display data to the user
 https://developer.android.com/reference/android/content/Intent#ACTION_VIEW
 
+        DI Package
+What's factory in koin
+
+
+
+https://proandroiddev.com/a-robust-mvi-with-jetpack-compose-e08882d2c4ff
+
+
+    UI->FEATURE->COMMON->BroadcastReceiver
+https://stackoverflow.com/questions/57284582/networkinfo-has-been-deprecated-by-api-29

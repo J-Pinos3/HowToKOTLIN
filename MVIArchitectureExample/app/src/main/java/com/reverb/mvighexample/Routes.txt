@@ -1,14 +1,14 @@
 TODO:
 
 
-
 ERRORS:
 
 
 
 PROGRESS:
 
-    5) Create the GithubRepositoryImpl implementation class
+
+
 
 
 COMPLETED:
@@ -16,3 +16,22 @@ COMPLETED:
     2) Create the Endpoints object to store endpoints
     3) Create Interface for the endpoints aka. webservice
     4) Create interface for the Repository layer of clean architecture (GithubRepository)
+    5) Create the GithubRepositoryImpl implementation class
+    6) create AppModule for di with koin
+    7) Create RepositoryModule for di
+    8) Create ViewModelModule for di
+    9) Create BaseViewModel
+    10) Create BroadcastReceiver class to check connectivity state
+    11) Create Connection Snackbar class
+
+
+
+
+
+
+
+
+
+
+
+
