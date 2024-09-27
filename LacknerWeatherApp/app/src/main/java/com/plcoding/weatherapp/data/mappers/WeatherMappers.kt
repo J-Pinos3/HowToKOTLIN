@@ -14,13 +14,14 @@ private data class IndexedWeatherData(
 )
 
 fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>>{
+    println("temperaturles codes:  $weatherCodes")
     return time.mapIndexed{ index, time ->
         val temperature = temperatures[index]
         val weatherCode = weatherCodes[index]
         val pressure = pressures[index]
         val windSpeed = windSpeeds[index]
         val humidity = humidities[index]
-
+        //println("WeatherCodes: $weatherCode")
         IndexedWeatherData(
             index = index,
             data = WeatherData(

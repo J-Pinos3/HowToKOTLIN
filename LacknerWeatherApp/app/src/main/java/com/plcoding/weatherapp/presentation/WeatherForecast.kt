@@ -37,14 +37,14 @@ fun WeatherForecast(
 
             LazyRow(content = {
                 if(data != null)
-                items(data){weatherData ->
-                    HourlyWeatherDisplay(
-                        weatherData = weatherData,
-                        modifier = Modifier
-                            .height(100.dp)
-                            .padding(horizontal = 15.dp)
-                    )
-                }
+                    items(data){weatherData ->
+                        HourlyWeatherDisplay(
+                            weatherData = weatherData,
+                            modifier = Modifier
+                                .height(100.dp)
+                                .padding(horizontal = 15.dp)
+                        )
+                    }
             })
         }
     }

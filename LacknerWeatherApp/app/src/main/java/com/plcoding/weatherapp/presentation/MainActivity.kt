@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
                     }
                     viewmodel.state.error.let {error ->
                         Text(
-                            text = error ?: "Couldn't load current weather",
+                            text = error ?: "",
                             color = Color.Red,
                             fontSize = 30.sp,
                             textAlign = TextAlign.Center,

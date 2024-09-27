@@ -40,10 +40,11 @@ class DefaultLocationTracker @Inject constructor(
         }
 
         return suspendCancellableCoroutine { continuation ->
+            //locationClient.locationAvailability
             locationClient.lastLocation.apply {
-                if( this.isComplete ){
-                    if(this.isSuccessful){
-                        continuation .resume(this.result)
+                if( isComplete ){
+                    if(isSuccessful){
+                        continuation .resume(result)
                     }else{
                         continuation.resume(null)
                     }

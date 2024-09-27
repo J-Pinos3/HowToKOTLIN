@@ -14,6 +14,7 @@ class WeatherRepositoryImpl @Inject constructor(
 
     override suspend fun getWeatherData( latitude: Double, longitude: Double ): Resource<WeatherInfo> {
         return try {
+            println("Latitude: $latitude \tLongitude: $longitude")
             Resource.Success(
                 data = api.getWeatherData(
                     latitude = latitude,
