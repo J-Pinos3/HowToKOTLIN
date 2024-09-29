@@ -1,4 +1,4 @@
-package com.reverb.mvighexample
+package com.reverb.mvighexample.ui.feature.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

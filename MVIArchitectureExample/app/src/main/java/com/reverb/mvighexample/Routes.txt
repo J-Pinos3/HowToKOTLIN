@@ -3,6 +3,8 @@ Only functions can have the composable annotation
 
 TODO:
 
+    16) Complete the MainActivity
+
 
 ERRORS:
 
@@ -11,8 +13,12 @@ ERRORS:
 PROGRESS:
 
 
+    18) Create the composables inside ui->feature->repos->composable (reposlistheader)
+    19) Create the composables inside ui->feature->repos->composable (reposlistitem)
+    20) Create the composables inside ui->feature->repos->composable (reposscreen)
+    21) Create the composables inside ui->feature->repos->composable (repostopbar)
 
-    14) Create the RoundedImage composable in ui-feature-common
+
 
 
 COMPLETED:
@@ -30,8 +36,9 @@ COMPLETED:
     12) Add colors, dimens, strings and themes resources
     13) Create the network error composable in ui-feature-common
     14) Create the Progress composable in ui-feature-common
+    15) Create the RoundedImage composable in ui-feature-common
 
-
+    17) Create the composables inside ui->feature->repos->composable (reposlist)
 
 
 
