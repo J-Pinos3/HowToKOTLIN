@@ -23,7 +23,7 @@ abstract class BaseViewModel<Event: ViewEvent, UiState: ViewState, Effect: ViewS
 :ViewModel(){
 
     abstract fun setInitialState(): UiState
-    abstract fun handleEvents(event: Event): UiState
+    abstract fun handleEvents(event: Event)
 
     private  val initialState: UiState by lazy { setInitialState() }
 
