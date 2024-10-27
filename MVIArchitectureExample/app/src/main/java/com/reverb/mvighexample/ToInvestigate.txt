@@ -18,3 +18,18 @@ https://proandroiddev.com/a-robust-mvi-with-jetpack-compose-e08882d2c4ff
 
     UI->FEATURE->COMMON->BroadcastReceiver
 https://stackoverflow.com/questions/57284582/networkinfo-has-been-deprecated-by-api-29
+
+
+        Difference between divider and spacer
+Divider is a line that separate items in lists or other containers
+Spacer adds space between items
+
+https://developer.android.com/develop/ui/compose/components/divider#vertical
+
+
+
+        SNACKBAR AND SCAFFOLD STATE
+
+https://stackoverflow.com/questions/71363542/not-able-to-use-rememberscaffoldstate-in-android-compose-material3
+https://stackoverflow.com/questions/76360474/why-is-scaffoldstate-not-working-in-android-studio-kotlin-with-jetpack-compose
+https://stackoverflow.com/questions/73521366/unresolved-reference-error-for-scaffoldstate-with-material3

@@ -32,6 +32,7 @@ import com.reverb.mvighexample.R
 import com.reverb.mvighexample.common.buildUrlIntent
 import com.reverb.mvighexample.data.model.Repo
 import com.reverb.mvighexample.data.model.RepoPreview
+import com.reverb.mvighexample.ui.theme.OnSurfaceTextAlpha
 import java.util.Locale
 
 @Composable

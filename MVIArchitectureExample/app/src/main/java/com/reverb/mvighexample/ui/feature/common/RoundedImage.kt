@@ -5,9 +5,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
 import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.reverb.mvighexample.R
 
@@ -18,19 +22,22 @@ fun RoundedImage(
     modifier: Modifier = Modifier,
     crossfade: Boolean = true
 ){
-    Image(
-        painter = rememberImagePainter(
-            data = url,
-            builder = {
-                crossfade(crossfade)
-                placeholder(placeholder)
-                transformations(CircleCropTransformation())
-            }
-        ),
-        contentDescription = null,
-        modifier = modifier
+
+    AsyncImage(
+    model = ImageRequest.Builder(LocalContext.current)
+        .data(url)
+        .crossfade(crossfade)
+        .placeholder(placeholder)
+        .transformations(CircleCropTransformation())
+        .build(),
+
+    contentDescription = null,
+    modifier = modifier
     )
+
+
 }
+
 
 @Preview(showBackground = true)
 @Composable

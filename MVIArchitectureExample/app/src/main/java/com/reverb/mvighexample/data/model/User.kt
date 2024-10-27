@@ -11,5 +11,5 @@ data class User (
 fun buildUserPreview() = User(
     userId = "51235654",
     avatarUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVA_HrQLjkHiJ2Ag5RGuwbFeDKRLfldnDasw&s",
-    htmlUrl = "https://github.com/51234843"
+    htmlUrl = "https://github.com/J-Pinos3"
 )

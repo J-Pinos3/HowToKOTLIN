@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.material.shape.MarkerEdgeTreatment
 import com.reverb.mvighexample.R
@@ -36,6 +38,8 @@ import com.reverb.mvighexample.common.buildUrlIntent
 import com.reverb.mvighexample.data.model.UserDetail
 import com.reverb.mvighexample.data.model.buildUserDetailPreview
 import com.reverb.mvighexample.ui.feature.common.RoundedImage
+import com.reverb.mvighexample.ui.theme.OnSurfaceBackgroundAlpha
+import com.reverb.mvighexample.ui.theme.OnSurfaceTextAlpha
 import kotlinx.coroutines.launch
 import java.lang.invoke.TypeDescriptor
 import java.util.Locale
@@ -51,6 +55,8 @@ fun ReposListHeader(userDetail: UserDetail) {
                 .fillMaxWidth()
                 .padding(paddingMedium)
         ){
+            Spacer(modifier = Modifier.size(50.dp))
+
             ScoreSession(userDetail)
 
             Spacer(modifier = Modifier.size(paddingXSmall))
@@ -95,7 +101,7 @@ fun ScoreSession(userDetail: UserDetail){
 @Composable
 fun UserDetailSession(userDetail: UserDetail){
     Text(
-        text = userDetail.name,
+        text = userDetail.name ?: "Jhon Doe",
         style = MaterialTheme.typography.headlineMedium,
         fontWeight = FontWeight.Bold
     )
@@ -103,7 +109,7 @@ fun UserDetailSession(userDetail: UserDetail){
     Text(
         text = userDetail.location ?: stringResource(id = R.string.location_not_defined),
         style = MaterialTheme.typography.titleSmall,
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = OnSurfaceTextalpha)
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = OnSurfaceTextAlpha)
     )
 }
 
@@ -159,6 +165,9 @@ fun ButtonsSession(userDetail: UserDetail){
                 Text(text = stringResource(R.string.blog_not_found_dialog_confirm_button).uppercase(
                     Locale.getDefault()
                 ))
+
+            }, modifier = Modifier.clickable {
+                blogNotFoundDialog.value = false
             })
     }
 }
