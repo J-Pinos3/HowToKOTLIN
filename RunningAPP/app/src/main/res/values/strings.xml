@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WildRunning</string>
+    <string name="hasta_que_nivel_eres_capaz_de_llegar">¿Hasta qué nivel eres capaz de llegar?</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="olvidaste_tu_contrasena">¿Olvidaste tu contraseña?</string>
+    <string name="he_leido_y_acepto_los">He leído y acepto los</string>
+    <string name="terminos_y_condiciones_de_uso">términos y condiciones de uso</string>
+    <string name="bar_title_terms">Términos y Condiciones</string>
+
+    <string name="google">GOOGLE</string>
+    <string name="facebook">FACEBOOK</string>
+</resources>
