@@ -1,0 +1,7 @@
+FIREBASE SERVICES:  // https://firebase.google.com/docs/android/setup#available-libraries
+
+https://stackoverflow.com/questions/67490537/android-studio-4-2-doesnt-show-signing-report-in-the-gradle-bar
+
+
+(Replace the current google-services.json with a new one from firebase console)
+https://stackoverflow.com/questions/37810552/cannot-resolve-symbol-default-web-client-id-in-firebases-android-codelab

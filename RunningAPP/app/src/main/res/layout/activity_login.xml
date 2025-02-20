@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_dark"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:src="@mipmap/banner"
+        android:paddingHorizontal="15dp"/>
+
+
+    <TextView
+        android:id="@+id/txtInvitation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hasta_que_nivel_eres_capaz_de_llegar"
+        android:textColor="@color/orange"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="17sp" />
+
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColorHint="@color/gray"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="18dp"
+        />
+
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:backgroundTint="@color/white"
+        android:textSize="22sp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/iniciar_sesion"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingVertical="8dp"
+        android:textColor="@color/white"
+        android:background="@color/green"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="5dp"
+        android:onClick="login"/>
+
+    <TextView
+        android:id="@+id/txtForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/olvidaste_tu_contrasena"
+        android:textColor="@color/gray"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:onClick="forgotPassword"/>
+
+
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirme su Contraseña"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:backgroundTint="@color/white"
+        android:textSize="22sp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/lyTareas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/he_leido_y_acepto_los"
+            android:textColor="@color/gray"/>
+
+        <TextView
+            android:id="@+id/tvTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terminos_y_condiciones_de_uso"
+            android:textColor="@color/salmon_dark"
+            android:layout_marginStart="5dp"
+            android:onClick="goTerms"/>
+    </LinearLayout>
+
+    <!-- app:cornerRadius="0dp" fixes the problem with the rounded corners -->
+    <Button
+        android:id="@+id/btnSignGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:backgroundTint="@color/white"
+        app:cornerRadius="0dp"
+        android:text="GOOGLE"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:onClick="callSignInGoogle"
+        android:paddingLeft="15dp"
+        android:drawableLeft="@drawable/google"/>
+
+    <Button
+        android:id="@+id/btnSignFacebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="10dp"
+        app:cornerRadius="0dp"
+        android:text="FACEBOOK"
+        android:textColor="@color/black"
+        android:textAlignment="textStart"
+        android:onClick="callSignInFacebook"
+        android:textSize="16sp"
+        android:paddingLeft="15dp"
+        android:drawableLeft="@drawable/facebook"/>
+
+</LinearLayout>

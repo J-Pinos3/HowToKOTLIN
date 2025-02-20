@@ -7,6 +7,28 @@
     <string name="terminos_y_condiciones_de_uso">términos y condiciones de uso</string>
     <string name="bar_title_terms">Términos y Condiciones</string>
 
+
+    <string name="facebook_app_id">1395681594733014</string>
+    <string name="fb_login_protocol_scheme">fb1395681594733014</string>
+    <string name="facebook_client_token">d213350964b5b53f65709c36e5de876f</string>
+
+
+
     <string name="google">GOOGLE</string>
     <string name="facebook">FACEBOOK</string>
+
+    <string name="bar_title">Wild Running</string>
+    <string name="menu_running">Running</string>
+    <string name="menu_record">Historial</string>
+    <string name="menu_becomepremium">Hazte Premium</string>
+    <string name="menu_clearpreferences">Reestablecer Ajuses</string>
+    <string name="menu_signout">Cerrar Sesión</string>
+    <string name="menu_offercourse">¿Quieres aprender a desarrollar apps? Entra aquí</string>
+
+
+
+
+
+
+
 </resources>

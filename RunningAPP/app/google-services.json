@@ -13,7 +13,12 @@
           "package_name": "com.projects.enzoftware.metalball"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAwWg3r8r-WsFLMh-GPA5DTvrBmEWtNNiM"
@@ -21,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -32,7 +42,12 @@
           "package_name": "com.reverb.logregfirebase"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAwWg3r8r-WsFLMh-GPA5DTvrBmEWtNNiM"
@@ -40,7 +55,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -51,7 +71,12 @@
           "package_name": "com.reverb.mvvmfirebaserecycler"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAwWg3r8r-WsFLMh-GPA5DTvrBmEWtNNiM"
@@ -59,7 +84,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -70,7 +100,12 @@
           "package_name": "com.reverb.shootergame"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAwWg3r8r-WsFLMh-GPA5DTvrBmEWtNNiM"
@@ -78,7 +113,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -89,7 +129,20 @@
           "package_name": "com.reverb.wildrunning"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "709219976267-0o36rfngff7c5n2k8jqldp20sm7v9uum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reverb.wildrunning",
+            "certificate_hash": "0168609a7fdee6499e62b000c0f77f8ab17cd976"
+          }
+        },
+        {
+          "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAwWg3r8r-WsFLMh-GPA5DTvrBmEWtNNiM"
@@ -97,7 +150,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709219976267-ir3g3845l55ojnnc2vj4n95hdk7t6cfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
+import com.reverb.wildrunning.LoginActivity.Companion.providerSession
 import com.reverb.wildrunning.LoginActivity.Companion.userEmail
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun signOut(){
         userEmail = ""
+
+        if (providerSession == "Facebook") LoginManager.getInstance().logOut()
+
 
         FirebaseAuth.getInstance().signOut()
         //go back to start
