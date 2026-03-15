@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_header"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/orange"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:gravity="bottom"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
+    <LinearLayout
+        android:id="@+id/lyNav_Levels"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--BIKE -->
+        <LinearLayout
+            android:id="@+id/lyNavLevelBike"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rlHeaderLevelBike"
+                android:layout_width="wrap_content"
+                android:gravity="top"
+                android:layout_height="110dp">
+
+                <TextView
+                    android:id="@+id/tvNumberLevelBike"
+                    android:layout_width="117dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/level"
+                    android:textAlignment="textEnd"
+                    android:background="@color/salmon_dark"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:paddingVertical="2dp"
+                    android:paddingRight="10dp"
+                    android:translationZ="10dp"/>
+
+                <ImageView
+                    android:id="@+id/ivSportBike"
+                    android:layout_width="117dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/bike"
+                    android:background="@color/gray_dark"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cviLevelBike"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:translationZ="10dp"
+                    app:cardCornerRadius="32.5dp"
+                    app:cardBackgroundColor="@color/salmon_dark"
+                    android:layout_marginStart="5dp">
+                    <ImageView
+                        android:id="@+id/ivLevelBike"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/level_1"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvTotalTimeBike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="85dp"
+                    android:text="D4 03:56:23"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlDataLevelBike"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="top|center">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvLevelBike"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:cardCornerRadius="55dp"
+                    android:background="@color/white">
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbDistanceBike"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:translationZ="5dp"
+                        app:cs_circle_color="@color/blue_pastel"
+                        app:cs_circle_progress_color="@color/blue_trans"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="0"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="180" />
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbRunsBike"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        app:cs_circle_color="@color/salmon_pastel"
+                        app:cs_circle_progress_color="@color/salmon_dark"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="180"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="0" />
+
+                    <TextView
+                        android:id="@+id/tvBikeDistanceLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DISTANCE"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalDistanceBike"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="30%"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="25sp"
+                        android:layout_marginTop="23dp"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalRunsBike"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5/10"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="20sp"
+                        android:layout_marginTop="55dp"/>
+
+                    <TextView
+                        android:id="@+id/tvBikeRunsLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="RUNS"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="80dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--ROLLER -->
+        <LinearLayout
+            android:id="@+id/lyNavLevelRoller"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rlHeaderLevelRoller"
+                android:layout_width="wrap_content"
+                android:gravity="top"
+                android:layout_height="110dp">
+
+                <TextView
+                    android:id="@+id/tvNumberLevelRoller"
+                    android:layout_width="117dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/level"
+                    android:textAlignment="textEnd"
+                    android:background="@color/salmon_dark"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:paddingVertical="2dp"
+                    android:paddingRight="10dp"
+                    android:translationZ="10dp"/>
+
+                <ImageView
+                    android:id="@+id/ivSportRoller"
+                    android:layout_width="117dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/rollerskate"
+                    android:background="@color/gray_dark"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cviLevelRoller"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:translationZ="10dp"
+                    app:cardCornerRadius="32.5dp"
+                    app:cardBackgroundColor="@color/salmon_dark"
+                    android:layout_marginStart="5dp">
+                    <ImageView
+                        android:id="@+id/ivLevelRoller"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/level_1"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvTotalTimeRoller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="85dp"
+                    android:text="D4 03:56:23"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlDataLevelRoller"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="top|center">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvLevelRoller"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:cardCornerRadius="55dp"
+                    android:background="@color/white">
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbDistanceRoller"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:translationZ="5dp"
+                        app:cs_circle_color="@color/blue_pastel"
+                        app:cs_circle_progress_color="@color/blue_trans"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="0"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="180" />
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbRunsRoller"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        app:cs_circle_color="@color/salmon_pastel"
+                        app:cs_circle_progress_color="@color/salmon_dark"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="180"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="0" />
+
+                    <TextView
+                        android:id="@+id/tvRollerDistanceLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DISTANCE"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalDistanceRoller"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="30%"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="25sp"
+                        android:layout_marginTop="23dp"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalRunsRoller"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5/10"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="20sp"
+                        android:layout_marginTop="55dp"/>
+
+                    <TextView
+                        android:id="@+id/tvRollerRunsLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="RUNS"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="80dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--RUNNER -->
+        <LinearLayout
+            android:id="@+id/lyNavLevelRuns"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rlHeaderLevelRuns"
+                android:layout_width="wrap_content"
+                android:gravity="top"
+                android:layout_height="110dp">
+
+                <TextView
+                    android:id="@+id/tvNumberLevelRuns"
+                    android:layout_width="117dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/level"
+                    android:textAlignment="textEnd"
+                    android:background="@color/salmon_dark"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:paddingVertical="2dp"
+                    android:paddingRight="10dp"
+                    android:translationZ="10dp"/>
+
+                <ImageView
+                    android:id="@+id/ivSportRuns"
+                    android:layout_width="117dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/running"
+                    android:background="@color/gray_dark"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cviLevelRuns"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:translationZ="10dp"
+                    app:cardCornerRadius="32.5dp"
+                    app:cardBackgroundColor="@color/salmon_dark"
+                    android:layout_marginStart="5dp">
+                    <ImageView
+                        android:id="@+id/ivLevelRuns"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/level_1"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvTotalTimeRuns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="85dp"
+                    android:text="D4 03:56:23"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlDataLevelRuns"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="top|center">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvLevelRuns"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:cardCornerRadius="55dp"
+                    android:background="@color/white">
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbDistanceRuns"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:translationZ="5dp"
+                        app:cs_circle_color="@color/blue_pastel"
+                        app:cs_circle_progress_color="@color/blue_trans"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="0"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="180" />
+
+                    <me.tankery.lib.circularseekbar.CircularSeekBar
+                        android:id="@+id/csbRunsRuns"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        app:cs_circle_color="@color/salmon_pastel"
+                        app:cs_circle_progress_color="@color/salmon_dark"
+                        app:cs_circle_stroke_width="8dp"
+                        app:cs_circle_style="butt"
+                        app:cs_disable_pointer="true"
+                        app:cs_end_angle="180"
+                        app:cs_max="100"
+                        app:cs_negative_enabled="true"
+                        app:cs_pointer_angle="0"
+                        app:cs_pointer_stroke_width="8dp"
+                        app:cs_progress="30"
+                        app:cs_start_angle="0" />
+
+                    <TextView
+                        android:id="@+id/tvRunsDistanceLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DISTANCE"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalDistanceRuns"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="30%"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="25sp"
+                        android:layout_marginTop="23dp"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalRunsRuns"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5/10"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="20sp"
+                        android:layout_marginTop="55dp"/>
+
+                    <TextView
+                        android:id="@+id/tvRunsRunsLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="RUNS"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_medium"
+                        android:textSize="11sp"
+                        android:layout_marginTop="80dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="@string/user"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/tvHi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="@string/nav_hi"
+        android:textColor="@color/gray_dark"/>
+
+</LinearLayout>

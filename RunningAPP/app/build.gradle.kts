@@ -44,6 +44,9 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.3.0")
+
     implementation("com.google.firebase:firebase-auth:23.1.0")
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-analytics")
@@ -54,6 +57,8 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:25.1.1")
 
     implementation("com.facebook.android:facebook-android-sdk:9.1.1")
+
+    implementation("me.tankery.lib:circularSeekBar:1.4.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
